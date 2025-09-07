@@ -36,13 +36,6 @@ jobs:
           echo "--- APP DIR ---" && ls -la .
           echo "--- OUT APP ---" && ls -la out || true
 
-      - name: Upload OUT artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: out-folder
-          path: out
-          if-no-files-found: error
-
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
