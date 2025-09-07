@@ -25,6 +25,7 @@ jobs:
           cache-dependency-path: portifolio-venancio/package-lock.json
       - run: npm ci
       - run: npm run build   # cria a pasta out/
+      - run: next export
 
     #   - name: Add .nojekyll
     #     run: touch out/.nojekyll
