@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+defaults:
+    run:
+        working-directory: portifolio-venancio
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
