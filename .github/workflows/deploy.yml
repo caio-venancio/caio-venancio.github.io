@@ -33,7 +33,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          publish_dir: ./portifolio-venancio/out
           publish_branch: gh-pages
           # opcional: se usar domínio próprio, descomente:
           # cname: meu-dominio.com
