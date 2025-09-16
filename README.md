@@ -33,16 +33,23 @@ isso serve a pasta out.
 ## Páginas abordadas
 - [Pages in Next.js](https://nextjs.org/learn/pages-router/navigate-between-pages-pages-in-nextjs)
 - [Link Component](https://nextjs.org/learn/pages-router/navigate-between-pages-link-component)
-
-<!-- - [CSS Styling](https://nextjs.org/learn/pages-router/assets-metadata-css-css-styling) -->
-<!-- https://nextjs.org/learn/pages-router/assets-metadata-css-global-styles -->
-<!-- https://nextjs.org/learn/pages-router/data-fetching-blog-data -->
-<!-- https://nextjs.org/learn/pages-router/data-fetching-pre-rendering -->
-<!-- https://nextjs.org/learn/pages-router/data-fetching-two-forms -->
+- [Global styles](https://nextjs.org/learn/dashboard-app/css-styling#global-styles)
+- [Tailwind](https://nextjs.org/learn/dashboard-app/css-styling#tailwind)
+- [CSS Modules](https://nextjs.org/learn/dashboard-app/css-styling#tailwind)
 - [Understanding static data fetching](https://nextjs.org/learn/pages-router/data-fetching-with-data)
 - [Understanding deploy options](https://nextjs.org/learn/pages-router/deploying-nextjs-app-other-hosting-options)
 - [Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export)
 - [How to create a github pages](https://docs.github.com/pt/pages/getting-started-with-github-pages/creating-a-github-pages-site)
 - [How to write github actions workflows](https://docs.github.com/pt/actions/how-tos/write-workflows)
+
+**Extras**:
+- [layout.tsx](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages)
+- [layout component](https://nextjs.org/learn/pages-router/assets-metadata-css-layout-component)
+
 <!-- https://nextjs.org/learn/pages-router/data-fetching-implement-getstaticprops -->
 <!-- - [Pre-rendering and Data Fetching](https://nextjs.org/learn/pages-router/data-fetching) -->
+<!-- - [CSS Styling](https://nextjs.org/learn/pages-router/assets-metadata-css-css-styling) -->
+<!-- https://nextjs.org/learn/pages-router/assets-metadata-css-global-styles -->
+<!-- https://nextjs.org/learn/pages-router/data-fetching-blog-data -->
+<!-- https://nextjs.org/learn/pages-router/data-fetching-pre-rendering -->
+<!-- https://nextjs.org/learn/pages-router/data-fetching-two-forms -->
