@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from 'next/link';
-import styles from '@/app/ui/home.module.css';
+// import Image from "next/image";
+// import Link from 'next/link';
+// import styles from '@/app/ui/home.module.css';
 import { Header } from '@/components/header'
 import { Section1 } from "@/components/section1"
 import { Section2 } from "@/components/section2"
