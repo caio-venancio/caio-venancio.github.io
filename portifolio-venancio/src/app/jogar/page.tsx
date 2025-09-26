@@ -12,7 +12,7 @@ export default function Jogar() {
       <>
     <main className="flex min-h-screen flex-col p-6 bg-white">
       <Header />
-      <div>
+      <div className='mx-auto flex flex-col items-center justify-center'>
           <AppWithoutSSR />
       </div>
     </main>
