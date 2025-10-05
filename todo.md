@@ -4,3 +4,6 @@
 - [] Fazer página Projetos
 - [] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [] Fazer bloco que se mexe com setas ou wasd em fake zelda
+- [] Retirar barras laterais
+- [] Adicionar testes contra regressão
+- [] Adicionar testes para build
