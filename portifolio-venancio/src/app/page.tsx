@@ -8,7 +8,8 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col p-6 bg-white">
+    // antes estava com um p-6, o que causava um padding de 24px na página toda
+    <main className="flex min-h-screen flex-col bg-white">
       {/* <div className={styles.shape}></div> */}
       <Header />
       <Section1 />
