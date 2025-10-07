@@ -4,6 +4,7 @@
 import { Header } from '@/components/header'
 import { Section1 } from "@/components/section1"
 import { Section2 } from "@/components/section2"
+import { Section } from "@/components/section"
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Header />
       <Section1 />
       <Section2 />
+      <Section className="bg-gray-500"> </Section>
       <Footer />
     </main>
   );

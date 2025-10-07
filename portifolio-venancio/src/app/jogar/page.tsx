@@ -2,6 +2,7 @@
 
 // import Game from '@/components/game1';
 import { Header } from '@/components/header'
+import { Section1 } from '@/components/section1';
 // // import Script from "next/script";
 // import dynamic from "next/dynamic";
 // const BreakoutWithoutSSR = dynamic(() => import("../../breakout/breakout"), { ssr: false });
