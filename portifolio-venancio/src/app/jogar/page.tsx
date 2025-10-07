@@ -2,6 +2,8 @@
 
 // import Game from '@/components/game1';
 import { Header } from '@/components/header'
+import Navbar from '@/components/navbar';
+import { Section } from '@/components/section';
 import { Section1 } from '@/components/section1';
 // // import Script from "next/script";
 // import dynamic from "next/dynamic";
@@ -27,9 +29,14 @@ import Sidebar from '@/components/sidebar';
 export default function JogarLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen">
-      <Header />
-      <Sidebar />
-      <main className="flex-1 p-6 bg-gray-100">{children}</main>
+      <main className="flex-1 bg-gray-100">
+        <Header />
+        {/* <Section className='bg-gray-500'/> */}
+        {/* <Sidebar /> */}
+        <Navbar />
+        <Section />
+        {children}
+      </main>
     </div>
   );
 }
