@@ -4,7 +4,7 @@ import { Header } from '@/components/header'
 
 import dynamic from "next/dynamic";
 import Navbar from '@/components/navbar';
-const BreakoutWithoutSSR = dynamic(() => import("../../../breakout/breakout"), { ssr: false });
+const BreakoutWithoutSSR = dynamic(() => import("@/breakout/breakout"), { ssr: false });
 
 export default function BreakoutPage() {
   return (
