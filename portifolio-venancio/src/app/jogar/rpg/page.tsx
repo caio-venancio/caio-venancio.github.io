@@ -12,7 +12,9 @@ export default function RpgPage() {
       <Header />
       <Navbar />
       <h1 className="text-2xl font-bold mb-4">RPG</h1>
-      <RPGWithoutSSR />
+      <div className='flex justify-center items-center'>
+        <RPGWithoutSSR />
+      </div>
     </div>
   );
 }

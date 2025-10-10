@@ -13,7 +13,9 @@ export default function BreakoutPage() {
       {/* <Sidebar /> */}
       <Navbar />
       <h1 className="text-2xl font-bold mb-4">Breakout</h1>
-      <BreakoutWithoutSSR />
+      <div className='flex justify-center items-center'>
+        <BreakoutWithoutSSR />
+      </div>
     </div>
   );
 }
