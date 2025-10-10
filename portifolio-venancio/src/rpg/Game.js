@@ -35,8 +35,15 @@ import { Scene } from 'phaser';
 //     }
 // }
 
-export class Breakout extends Phaser.Scene
+export class Rpg extends Phaser.Scene
 {
+    constructor(){
+
+        super({ key: 'rpg' });
+
+        this.player;
+
+    }
     // constructor ()
     // {
     //     super({ key: 'breakout' });
@@ -46,11 +53,17 @@ export class Breakout extends Phaser.Scene
     //     this.ball;
     // }
 
-    // preload ()
-    // {
-    //     this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
-    //     this.load.atlas('assets', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
-    // }
+    preload ()
+    {
+        this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
+        this.load.atlas('assets', 'assets/games/breakout/breakout.png', 'assets/games/breakout/breakout.json');
+    }
+
+    create(){
+        this.player = this.physics.add.sprite(400, 350, 'assets', 'weirdsquare')
+        //  Our colliders
+        //  Input events
+    }
 
     // create ()
     // {
@@ -152,13 +165,12 @@ export class Breakout extends Phaser.Scene
     //     }
     // }
 
-    // update ()
-    // {
+    update (time, delta){
     //     if (this.ball.y > 600)
     //     {
     //         this.resetBall();
     //     }
-    // }
+    }
 }
 
 

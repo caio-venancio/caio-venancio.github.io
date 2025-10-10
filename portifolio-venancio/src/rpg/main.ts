@@ -1,7 +1,7 @@
 import { Boot } from './scenes/Boot';
 import { GameOver } from './scenes/GameOver';
 // import { Game as MainGame } from './scenes/Game';
-import { Breakout as MainGame } from './Game';
+import { Rpg as MainGame } from './Game';
 import { MainMenu } from './scenes/MainMenu';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
@@ -24,10 +24,12 @@ const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.WEBGL,
     width: 800,
     height: 600,
-    parent: 'phaser-example',
     scene: [ MainGame ],
     physics: {
-        default: 'arcade'
+        default: "arcade",
+        arcade: {
+            gravity: { x: 0, y: 0 } //top down game, so no gravity
+        }
     }
 };
 
