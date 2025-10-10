@@ -41,7 +41,9 @@ export class Rpg extends Phaser.Scene
 
         super({ key: 'rpg' });
 
-        this.player;
+        this.player = null;
+        this.cursors = null;
+        this.speed = 150;
 
     }
     // constructor ()
@@ -63,6 +65,9 @@ export class Rpg extends Phaser.Scene
         this.player = this.physics.add.sprite(400, 350, 'assets', 'weirdsquare')
         //  Our colliders
         //  Input events
+
+         this.cursors = this.input.keyboard.createCursorKeys();
+
     }
 
     // create ()
@@ -170,6 +175,25 @@ export class Rpg extends Phaser.Scene
     //     {
     //         this.resetBall();
     //     }
+        // Stop any previous movement from the last frame
+        this.player.body.setVelocity(0);
+
+        // Horizontal movement
+        if (this.cursors.left.isDown) {
+            this.player.body.setVelocityX(-this.speed);
+        } else if (this.cursors.right.isDown) {
+            this.player.body.setVelocityX(this.speed);
+        }
+
+        // Vertical movement
+        if (this.cursors.up.isDown) {
+            this.player.body.setVelocityY(-this.speed);
+        } else if (this.cursors.down.isDown) {
+            this.player.body.setVelocityY(this.speed);
+        }
+
+        // Normalize and scale the velocity so that player can't move faster along a diagonal
+        this.player.body.velocity.normalize().scale(this.speed);
     }
 }
 

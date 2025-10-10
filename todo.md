@@ -3,7 +3,11 @@
 - [] Fazer página Sobre
 - [] Fazer página Projetos
 - [] Fazer layout que se repete em todas as páginas (header, por exemplo)
-- [] Fazer bloco que se mexe com setas ou wasd em fake zelda
+- [X] Fazer bloco que se mexe com setas ou wasd em fake zelda
 - [X] Retirar barras laterais
 - [] Adicionar testes contra regressão
 - [] Adicionar testes para build
+- [] Conferir a estrutura dos jogos
+- [] Descobrir o que EventBus faz
+- [] Separar interface do jogo para lógica
+- [] Centralizar jogos
