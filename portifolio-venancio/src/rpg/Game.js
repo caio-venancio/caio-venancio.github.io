@@ -197,5 +197,9 @@ export class Rpg extends Phaser.Scene
     }
 }
 
+// https://docs.phaser.io/phaser/getting-started/making-your-first-phaser-game#bouncing-bombs
+// https://medium.com/@michaelwesthadley/modular-game-worlds-in-phaser-3-tilemaps-1-958fc7e6bbd6
 
-
+// Em jogo 2d top-down, é melhor a camera se movimentar com o personagem ou a camera carregar por tamanho?
+// Qual a estrutura das fases de desenvolvimento?
+// Tem como fazer core para separar do phaser?
