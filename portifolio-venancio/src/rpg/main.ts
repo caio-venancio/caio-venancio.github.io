@@ -1,7 +1,13 @@
 import { Boot } from './scenes/Boot';
 import { GameOver } from './scenes/GameOver';
+
+// Jogo antigo:
 // import { Game as MainGame } from './scenes/Game';
-import { Rpg as MainGame } from './Game';
+// Jogo Novo, arquivo errado:
+// import { Rpg as MainGame } from './Game';
+// Jogo Novo, arquivo certo:
+import { GameScene as MainGame } from './scenes/GameScene';
+
 import { MainMenu } from './scenes/MainMenu';
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';

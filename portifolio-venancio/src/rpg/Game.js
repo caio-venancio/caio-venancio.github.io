@@ -35,7 +35,7 @@ import { Scene } from 'phaser';
 //     }
 // }
 
-export class Rpg extends Phaser.Scene
+export class Rpg extends Scene
 {
     constructor(){
 
