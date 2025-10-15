@@ -20,7 +20,7 @@ export class GameScene extends Scene {
   preload() {
     // this.load.setBaseURL("https://cdn.phaserfiles.com/v385");
     // this.load.atlas("assets", "assets/games/breakout/breakout.png", "assets/games/breakout/breakout.json");
-    this.load.image("tiles", "/assets/tiles/tuxmon-sample-32px.png");
+    this.load.image("tiles", "/assets/tiles/tuxmon-sample-32px-extruded.png");
     this.load.tilemapTiledJSON("map", "/assets/maps/tuxemon-town.json");
 
   }
@@ -33,7 +33,7 @@ export class GameScene extends Scene {
     console.debug("map.tilesets:", map.tilesets.map(ts => ts.name));
 
     // tenta usar o nome esperado; se não existir, usa o primeiro tileset do JSON
-    let tileset = map.addTilesetImage("tuxmon-sample-32px", "tiles");
+    let tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
     if (!tileset && map.tilesets.length > 0) {
       const fallbackName = map.tilesets[0].name;
       console.warn(
