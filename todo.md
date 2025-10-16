@@ -12,8 +12,24 @@ Game
 - [] Descobrir o que EventBus faz
 - [X] Centralizar jogos
 - [X] Fazer player se mover no celular
-- [] Fazer Player ser uma classe
-- [] Fazer Player
+- [X] Fazer Player ser uma classe no Core
+- [] Colocar descrição em arquivos confusos do jogo
+- [X] Colocar background
+- [X] Colocar collision
+    - [X] Mark Certain tiles in the world layer as colliding (verificar se estão colidindo)
+    - [X] Enable AP
+    - [X] Set the player to collide with the worldLayer.
+- [] Colocar sprite animation no player
+- [] Colocar ataque
+- [] Colocar monstros
+- [] Colocar boss
+- [] Fazer checklist de gamificação
+
+Mobile
+- [] Fazer layout do jogo
+- [] Fazer gamepad
+- [] Descobrir soluções de zoom para pixel
+    - [] Assistir o problema de pixel
 
 Testes
 - [] Adicionar testes contra regressão
