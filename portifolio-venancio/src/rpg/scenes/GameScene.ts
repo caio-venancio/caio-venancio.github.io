@@ -6,12 +6,13 @@ import { Scene } from 'phaser';
 
 export class GameScene extends Scene {
   gs!: GameState;
-  player!: Phaser.GameObjects.Sprite; // sprite simples (sem Arcade Physics)
+  player!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
+  private speed = 150; // pixels / segundo
 
   constructor() {
     super({ key: "rpg" });
@@ -52,38 +53,75 @@ export class GameScene extends Scene {
     const worldLayer = map.createLayer("World", tileset, 0, 0);
     const aboveLayer = map.createLayer("Above Player", tileset, 0, 0);
 
+    if (!worldLayer) {
+      throw new Error(
+        "WorldLayer não retornado por map.createLayer"
+      )
+    }
+
+    worldLayer.setCollisionByProperty({ collides: true });
+
+    // const debugGraphics = this.add.graphics().setAlpha(0.75);
+    // worldLayer.renderDebug(debugGraphics, {
+    //   tileColor: null, // Color of non-colliding tiles
+    //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
+    //   faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
+    // });
+
     // 1) Estado lógico do jogo
     this.gs = new GameState();
 
     // 2) Sprite visual sincronizado com o estado
-    this.player = this.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
-    this.background = this.add.image(400, 300, "assets");
+    // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
+     this.player = this.physics.add
+       .sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
+      //  .setCollideWorldBounds(true);
 
-    // 3) Input
-    this.cursors = this.input.keyboard!.createCursorKeys();
+    
+    this.physics.add.collider(this.player, worldLayer);
+
+    // this.background = this.add.image(400, 300, "assets");
+
+  // 3) Input
+  this.cursors = this.input.keyboard!.createCursorKeys();
 
     // 4) Câmera segue o sprite (opcional)
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setLerp(0.15, 0.15);
+
+    // inicializa estado a partir da posição física
+    this.gs.player.x = this.player.x;
+    this.gs.player.y = this.player.y;
   }
 
   update(_time: number, deltaMs: number) {
-    // A) Coletar input da engine → DTO leve
-    const input = {
-      up: !!this.cursors.up?.isDown,
-      down: !!this.cursors.down?.isDown,
-      left: !!this.cursors.left?.isDown,
-      right: !!this.cursors.right?.isDown,
-    };
+    // Move o jogador usando o corpo físico para que colisões funcionem
+    if (!this.player || !this.player.body) return;
 
-    // B) Fixed timestep para estabilidade/determinismo
-    this.accumulator += deltaMs / 1000;
-    while (this.accumulator >= this.fixedDt) {
-      this.gs.update(input, this.fixedDt); // core decide novas posições
-      this.accumulator -= this.fixedDt;
+    const speed = this.speed;
+    let vx = 0;
+    let vy = 0;
+
+    if (this.cursors.left?.isDown) vx = -speed;
+    else if (this.cursors.right?.isDown) vx = speed;
+
+    if (this.cursors.up?.isDown) vy = -speed;
+    else if (this.cursors.down?.isDown) vy = speed;
+
+    // usar o helper do Arcade Sprite
+    this.player.setVelocity(vx, vy);
+
+    // normalizar movimento diagonal
+    const body = this.player.body as Phaser.Physics.Arcade.Body;
+    if (body.velocity.x !== 0 && body.velocity.y !== 0) {
+      body.velocity.normalize().scale(speed);
     }
 
-    // C) Render: refletir o estado no sprite
-    this.player.setPosition(this.gs.player.x, this.gs.player.y);
+    // atualizar o estado lógico a partir da posição física (sincroniza)
+    this.gs.player.x = this.player.x;
+    this.gs.player.y = this.player.y;
+
+    // debug rápido sobre colisões
+    // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
   }
 }
