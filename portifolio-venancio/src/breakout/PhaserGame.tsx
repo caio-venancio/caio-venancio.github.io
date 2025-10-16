@@ -1,6 +1,6 @@
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
-import StartGame from '../breakout/main';
-import { EventBus } from '../breakout/EventBus';
+import StartGame from './main';
+import { EventBus } from './EventBus';
 
 export interface IRefPhaserGame
 {

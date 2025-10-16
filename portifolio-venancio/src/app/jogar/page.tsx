@@ -24,7 +24,7 @@ import { Section1 } from '@/components/section1';
 // }
 
 // src/app/jogar/_layout.tsx
-import Sidebar from '@/components/sidebar';
+// import Sidebar from '@/components/sidebar';
 
 export default function JogarLayout({ children }: { children: React.ReactNode }) {
   return (
