@@ -5,7 +5,8 @@ import { Header } from '@/components/header'
 // import { Section1 } from "@/components/section1"
 // import { Section2 } from "@/components/section2"
 import { Section } from "@/components/section"
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/footer"
+import { Aside } from "@/components/aside"
 
 export default function Home() {
   return (
@@ -13,7 +14,12 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-white">
       {/* <div className={styles.shape}></div> */}
       <Header />
-      <Section className="bg-gray-500"></Section>
+      <div className="flex h-screen">
+        <Section className="bg-gray-500 flex-[2]"></Section>
+        <Aside className="flex-1 bg-blue-500">
+          <img src='../assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
+        </Aside>
+      </div>
       <Section className="bg-gray-100"></Section>
       <Footer />
     </main>
