@@ -17,7 +17,7 @@ export default function Home() {
       <div className="flex h-screen">
         <Section className="bg-gray-500 flex-[2]"></Section>
         <Aside className="flex-1 bg-blue-500">
-          <img src='../assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
+          <img src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
         </Aside>
       </div>
       <Section className="bg-gray-100"></Section>
