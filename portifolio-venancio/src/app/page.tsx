@@ -7,11 +7,16 @@ import { Header } from '@/components/header'
 import { Section } from "@/components/section"
 import { Footer } from "@/components/footer"
 import { Aside } from "@/components/aside"
+import Posts from "@/components/posts"
+
+ 
+
 
 export default function Home() {
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
     <main className="flex min-h-screen flex-col bg-white">
+      <Posts />
       {/* <div className={styles.shape}></div> */}
       <Header />
       <div className="flex h-screen">
