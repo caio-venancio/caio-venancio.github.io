@@ -30,7 +30,6 @@ export default function JogarLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen">
       <main className="flex-1 bg-gray-100">
-        <Header />
         {/* <Section className='bg-gray-500'/> */}
         {/* <Sidebar /> */}
         <Navbar />

@@ -19,7 +19,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col bg-white">
       <Posts />
       {/* <div className={styles.shape}></div> */}
-      <Header />
+      
       <div className="flex h-screen">
         <Section className="bg-gray-500 flex-[2]"></Section>
         <Aside className="flex-1 bg-blue-500">

@@ -9,7 +9,6 @@ const BreakoutWithoutSSR = dynamic(() => import("@/breakout/breakout"), { ssr: f
 export default function BreakoutPage() {
   return (
     <div>
-      <Header />
       {/* <Sidebar /> */}
       <Navbar />
       <h1 className="text-2xl font-bold mb-4">Breakout</h1>
