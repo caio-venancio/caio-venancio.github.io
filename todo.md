@@ -1,10 +1,13 @@
 Static
 - [] Fazer página inicial de Jogar
 - [] Fazer página Home
-    - [] Fazer cards flutuando
+    - [] Colocar um carrosel de cards
+        - [] Fazer um esquema com as informações para cards no frontmatter.
 - [] Fazer página Sobre
 - [] Fazer página Projetos
     - [] Fazer uma página por projeto
+    - [] Colocar um carrosel de páginas de projeto
+    - [] Colocar um contador de tecnologias
 - [] Fazer Blog
 - [] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
