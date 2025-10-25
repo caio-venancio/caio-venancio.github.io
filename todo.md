@@ -1,10 +1,14 @@
 Static
 - [] Fazer página inicial de Jogar
 - [] Fazer página Home
+    - [] Fazer cards flutuando
 - [] Fazer página Sobre
 - [] Fazer página Projetos
+    - [] Fazer uma página por projeto
+- [] Fazer Blog
 - [] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
+- [X] Extrair o conteúdo .md para html
 
 Game
 - [X] Fazer bloco que se mexe com setas ou wasd em fake zelda

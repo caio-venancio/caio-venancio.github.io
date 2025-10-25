@@ -8,6 +8,7 @@ import { Section } from "@/components/section"
 import { Footer } from "@/components/footer"
 import { Aside } from "@/components/aside"
 import Posts from "@/components/posts"
+import PostCard from '@/components/postcard'
 
  
 

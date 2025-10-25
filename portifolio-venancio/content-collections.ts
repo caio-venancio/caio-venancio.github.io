@@ -3,7 +3,7 @@ import { z } from "zod";
  
 const posts = defineCollection({
   name: "posts",
-  directory: "src/posts",
+  directory: "src/content/posts",
   include: "**/*.md",
   schema: z.object({
     title: z.string(),
