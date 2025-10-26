@@ -20,13 +20,24 @@ export default function Home() {
       {/* <Posts /> */}
       {/* <div className={styles.shape}></div> */}
       
-      <div className="flex h-screen">
-        <Section className="bg-gray-500 flex-[2] h-[50vh]"></Section>
+      <div className="flex">
+        <Section className="bg-gray-500 flex-[2] h-[50vh]">
+          
+        </Section>
         <Aside className="flex-1 bg-blue-500">
           <img src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
         </Aside>
       </div>
-      <Section className="bg-gray-100 h-screen"></Section>
+      <Section className="bg-[url('/assets/grass.jpg')] bg-cover bg-center min-h-screen relative
+        rounded-[1rem]
+        border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50">
+        <div className="absolute inset-0
+            rounded-[1rem]
+            bg-white/5 backdrop-blur-[5px]
+            border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50
+            ">
+        </div>  
+      </Section>
       <Footer />
     </main>
   );
