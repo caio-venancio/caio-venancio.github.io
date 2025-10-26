@@ -21,23 +21,29 @@ export default function Home() {
       {/* <div className={styles.shape}></div> */}
       
       <div className="flex">
-        <Section className="bg-gray-500 flex-[2] h-[50vh]">
+        <Section className="bg-gray-500 flex-[2] h-[50vh] relative">
+          <div className="bg-gradient-to-r from-blue-900/90 to-blue-100/40 w-full
+            absolute inset-0">
+          </div>
           
         </Section>
-        <Aside className="flex-1 bg-blue-500">
+        {/* <Aside className="flex-1 bg-blue-500">
           <img src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
-        </Aside>
+        </Aside> */}
       </div>
-      <Section className="bg-[url('/assets/grass.jpg')] bg-cover bg-center min-h-screen relative
-        rounded-[1rem]
-        border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50">
-        <div className="absolute inset-0
-            rounded-[1rem]
-            bg-white/5 backdrop-blur-[5px]
-            border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50
-            ">
+
+      {/* bg-[url('/assets/grass.jpg')] */}
+      {/* relative rounded-[1rem] */}
+      {/* border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
+      
+      <Section className=" bg-cover bg-center min-h-screen relative">
+        <div className="absolute inset-0">
+              {/* rounded-[1rem]
+              bg-white/5 backdrop-blur-[5px]
+              border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
         </div>  
       </Section>
+
       <Footer />
     </main>
   );
