@@ -1,10 +1,8 @@
 'use client'; 
 
-// import Game from '@/components/game1';
-import { Header } from '@/components/header'
+
 import Navbar from '@/components/navbar';
 import { Section } from '@/components/section';
-import { Section1 } from '@/components/section1';
 // // import Script from "next/script";
 // import dynamic from "next/dynamic";
 // const BreakoutWithoutSSR = dynamic(() => import("../../breakout/breakout"), { ssr: false });

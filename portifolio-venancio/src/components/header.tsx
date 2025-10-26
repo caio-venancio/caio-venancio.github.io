@@ -64,7 +64,7 @@ export function Header({ className }: HeaderProps) {
 
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
-                <Link href="#contato" className="px-3 py-2 hover:underline">
+                <Link href="/#contato" className="px-3 py-2 hover:underline">
                   Contato
                 </Link>
               </NavigationMenuLink>

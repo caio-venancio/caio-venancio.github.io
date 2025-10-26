@@ -1,6 +1,5 @@
 'use client';
 // import Sidebar from '@/components/sidebar';
-import { Header } from '@/components/header'
 
 import dynamic from "next/dynamic";
 import Navbar from '@/components/navbar';

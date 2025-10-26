@@ -1,14 +1,12 @@
 // import Image from "next/image";
 // import Link from 'next/link';
 // import styles from '@/app/ui/home.module.css';
-import { Header } from '@/components/header'
 // import { Section1 } from "@/components/section1"
 // import { Section2 } from "@/components/section2"
 import { Section } from "@/components/section"
 import { Footer } from "@/components/footer"
-import { Aside } from "@/components/aside"
-import Posts from "@/components/posts"
-import PostCard from '@/components/postcard'
+// import { Aside } from "@/components/aside"
+// import Posts from "@/components/posts"
 import HeroBlock from '@/components/herobanner'
 
  
