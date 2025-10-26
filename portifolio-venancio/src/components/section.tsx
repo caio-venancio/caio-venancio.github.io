@@ -11,8 +11,8 @@ interface SectionProps {
 
 export function Section({ className, children } : SectionProps) {
   return (
-    <section className={`py-20 px-6 text-white ${className}`}>
-      <div className="mx-auto max-w-6xl text-center h-full">
+    <section className={`${className}`}>
+      <div className="mx-auto max-w-6xl h-full">
         {children}
       </div>
     </section>

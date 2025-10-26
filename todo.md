@@ -3,6 +3,17 @@ Static
 - [] Fazer página Home
     - [] Colocar um carrosel de cards
         - [] Fazer um esquema com as informações para cards no frontmatter.
+            - [X] Encontrar algum exemplo de carrosel com cards
+                // https://www.justinmind.com/ui-design/carousel
+            - [X] Aplicar background de grama
+                impressionante
+            - [X] Aplica vidro fosco
+                ficou bom não
+    - [X] Decidir barra lateral
+        por hora não vou por.
+    - [X] Decidir fundo de section
+        degradê azul no cinza ficou bom
+    - [] Colocar frases aleatórias debaixo do meu nome.
 - [] Fazer página Sobre
 - [] Fazer página Projetos
     - [] Fazer uma página por projeto
@@ -37,6 +48,9 @@ Mobile
 - [] Fazer gamepad
 - [] Descobrir soluções de zoom para pixel
     - [] Assistir o problema de pixel
+- [] Ver como fazer responsividade com react e com tailwind
+    - [] Meta viewport
+    - [X] Colocar pai com `flex-1 min-w-0` e filhos com `flex-wrap overflow-x-auto` no header
 
 Testes
 - [] Adicionar testes contra regressão

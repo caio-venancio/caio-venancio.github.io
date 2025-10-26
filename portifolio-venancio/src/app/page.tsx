@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer"
 import { Aside } from "@/components/aside"
 import Posts from "@/components/posts"
 import PostCard from '@/components/postcard'
+import HeroBlock from '@/components/herobanner'
 
  
 
@@ -24,12 +25,23 @@ export default function Home() {
         <Section className="bg-gray-500 flex-[2] h-[50vh] relative">
           <div className="bg-gradient-to-r from-blue-900/90 to-blue-100/40 w-full
             absolute inset-0">
+              {/* <div className='text-white'>
+                <h1>Cilton de Pena</h1>
+                <p>Sim, sou eu mesmo, eu que fiz o site</p>
+              </div> */}
+              <HeroBlock
+                title="Caio Venâncio"
+                subtitle="Designer & dev por trás deste site."
+                cta={{ label: "Ver mais", href: "/sobre" }}
+                overlayFrom="from-blue-900/70"
+                overlayTo="to-transparent"
+                align="left"
+              />
           </div>
-          
         </Section>
         {/* <Aside className="flex-1 absolute">
           <img className='h-40' src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
-        </Aside> */}
+          </Aside> */}
       </div>
 
       {/* bg-[url('/assets/grass.jpg')] */}
