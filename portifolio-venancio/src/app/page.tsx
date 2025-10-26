@@ -17,16 +17,16 @@ export default function Home() {
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
     <main className="flex min-h-screen flex-col bg-white">
-      <Posts />
+      {/* <Posts /> */}
       {/* <div className={styles.shape}></div> */}
       
       <div className="flex h-screen">
-        <Section className="bg-gray-500 flex-[2]"></Section>
+        <Section className="bg-gray-500 flex-[2] h-[50vh]"></Section>
         <Aside className="flex-1 bg-blue-500">
           <img src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
         </Aside>
       </div>
-      <Section className="bg-gray-100"></Section>
+      <Section className="bg-gray-100 h-screen"></Section>
       <Footer />
     </main>
   );
