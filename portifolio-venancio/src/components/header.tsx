@@ -29,6 +29,15 @@ export function Header({ className }: HeaderProps) {
         >
           {/* permite quebrar/empilhar e rolar horizontal se ainda faltar espaço */}
           <NavigationMenuList className="flex flex-wrap gap-x-1 gap-y-2 overflow-x-auto overscroll-x-contain">
+
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link href="/" className="px-3 py-2 hover:underline">
+                  Home
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <Link href="/sobre" className="px-3 py-2 hover:underline">
