@@ -10,9 +10,13 @@ import {
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
 
-export function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export function Header({ className }: HeaderProps) {
   return (
-    <header className="w-full border-b bg-background/80 backdrop-blur-sm">
+    <header className={`w-full border-b bg-background/80 backdrop-blur-sm top-0 shadow-md ${className}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         
         {/* Logo / Nome */}

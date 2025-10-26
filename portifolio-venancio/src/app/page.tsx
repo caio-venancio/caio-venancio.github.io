@@ -16,7 +16,7 @@ import PostCard from '@/components/postcard'
 export default function Home() {
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
-    <main className="flex min-h-screen flex-col bg-white">
+    <main className="flex min-h-screen flex-col bg-white relative">
       {/* <Posts /> */}
       {/* <div className={styles.shape}></div> */}
       
@@ -27,8 +27,8 @@ export default function Home() {
           </div>
           
         </Section>
-        {/* <Aside className="flex-1 bg-blue-500">
-          <img src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
+        {/* <Aside className="flex-1 absolute">
+          <img className='h-40' src='/assets/caio2025.jpg' alt='foto de Caio Venâncio'></img>
         </Aside> */}
       </div>
 
