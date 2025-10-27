@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 // import { Aside } from "@/components/aside"
 // import Posts from "@/components/posts"
 import HeroBlock from '@/components/herobanner'
+import { CarouselDemo } from "../components/demo/carrouseldemo";
 
  
 
@@ -51,7 +52,9 @@ export default function Home() {
               {/* rounded-[1rem]
               bg-white/5 backdrop-blur-[5px]
               border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
-        </div>  
+        <CarouselDemo />
+        </div>
+        
       </Section>
 
       <Footer />
