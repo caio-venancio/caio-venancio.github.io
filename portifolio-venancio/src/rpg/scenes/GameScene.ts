@@ -134,10 +134,18 @@ export class GameScene extends Scene {
     let vx = 0;
     let vy = 0;
 
-    if (this.cursors.left?.isDown) vx = -speed;
-    else if (this.cursors.right?.isDown) vx = speed;
+    if (this.cursors.left?.isDown) {
+      vx = -speed;
+      this.player.anims.play('left', true);
+    }
+    else if (this.cursors.right?.isDown){
+      vx = speed;
+      this.player.anims.play('right', true);
+    } else {
+      this.player.anims.play('turn');
+    }
 
-    if (this.cursors.up?.isDown) vy = -speed;
+    if (this.cursors.up?.isDown){ vy = -speed;}
     else if (this.cursors.down?.isDown) vy = speed;
 
     // usar o helper do Arcade Sprite
