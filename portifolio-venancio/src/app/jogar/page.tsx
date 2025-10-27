@@ -1,10 +1,8 @@
 'use client'; 
 
-// import Game from '@/components/game1';
-import { Header } from '@/components/header'
+
 import Navbar from '@/components/navbar';
 import { Section } from '@/components/section';
-import { Section1 } from '@/components/section1';
 // // import Script from "next/script";
 // import dynamic from "next/dynamic";
 // const BreakoutWithoutSSR = dynamic(() => import("../../breakout/breakout"), { ssr: false });
@@ -30,7 +28,6 @@ export default function JogarLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex min-h-screen">
       <main className="flex-1 bg-gray-100">
-        <Header />
         {/* <Section className='bg-gray-500'/> */}
         {/* <Sidebar /> */}
         <Navbar />

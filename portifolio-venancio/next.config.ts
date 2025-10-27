@@ -1,11 +1,13 @@
 import type { NextConfig } from "next";
+import { withContentCollections } from "@content-collections/next";
 
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   /* config options here */
   output: 'export'
 };
 
-export default nextConfig;
+export default withContentCollections(nextConfig);
 
 // const repo = '/meu-jogo'; //nome do repositório
 

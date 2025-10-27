@@ -53,14 +53,22 @@ export class GameScene extends Scene {
     const worldLayer = map.createLayer("World", tileset, 0, 0);
     const aboveLayer = map.createLayer("Above Player", tileset, 0, 0);
 
+    // Conferindo se retornou com sucesso antes de utilizar
     if (!worldLayer) {
       throw new Error(
         "WorldLayer não retornado por map.createLayer"
       )
+    } else if (!aboveLayer) {
+      throw new Error(
+        "belowLayer não retornado por map.createLayer"
+      )
     }
 
+    aboveLayer.setDepth(10);
     worldLayer.setCollisionByProperty({ collides: true });
 
+
+    // -------- Sempre que quiser ver as colisões atuais, descomente: -------
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
     // worldLayer.renderDebug(debugGraphics, {
     //   tileColor: null, // Color of non-colliding tiles
