@@ -11,7 +11,7 @@ import {
 
 export function PostCarousel() {
   return (
-    <Carousel className="h-screen w-full px-4 sm:px-8 lg:px-12">
+    <Carousel className="w-full px-4 sm:px-8 lg:px-12">
       <CarouselContent>
         {/* {Array.from({ length: 100 }).map((_, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
@@ -28,7 +28,7 @@ export function PostCarousel() {
         {/* <div className="bg-red-400 w-50 h-50"></div> */}
         {Array.from({ length: 4 }).map((_, index) => (
           <CarouselItem key={index} className="pl-5 md:basis-1/2 lg:basis-1/3">
-            <div className={`bg-red-400 h-100 w-100`}>
+            <div className={`bg-red-400 h-10 w-10`}>
               <span>{index+1}</span>
             </div>
           </CarouselItem>

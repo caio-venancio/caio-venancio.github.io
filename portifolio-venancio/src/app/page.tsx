@@ -47,14 +47,19 @@ export default function Home() {
       {/* relative rounded-[1rem] */}
       {/* border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
       
-      <Section className=" bg-cover bg-center min-h-screen relative">
+      <Section className=" bg-cover bg-center h-[50vh] relative">
+        <h1> Projetos </h1>
         {/* <div className="absolute inset-0">
               {/* rounded-[1rem]
               bg-white/5 backdrop-blur-[5px]
               border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50
         </div> */}
-      <PostCarousel />
-        
+        <PostCarousel />
+      </Section>
+
+      <Section className='h-[50vh]'>
+        <h1> Blog </h1>
+
       </Section>
 
       <Footer />
