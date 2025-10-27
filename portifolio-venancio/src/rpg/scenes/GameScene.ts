@@ -23,11 +23,16 @@ export class GameScene extends Scene {
     // this.load.atlas("assets", "assets/games/breakout/breakout.png", "assets/games/breakout/breakout.json");
     this.load.image("tiles", "/assets/tiles/tuxmon-sample-32px-extruded.png");
     this.load.tilemapTiledJSON("map", "/assets/maps/tuxemon-town.json");
+    this.load.spritesheet('dude', 
+        '/assets/sprites/dude.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
 
   }
 
   create() {
      // 1) criar o tilemap a partir do JSON
+
     const map = this.make.tilemap({ key: "map" });
 
     // debug: listar tilesets presentes no JSON
@@ -82,16 +87,35 @@ export class GameScene extends Scene {
     // 2) Sprite visual sincronizado com o estado
     // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
      this.player = this.physics.add
-       .sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
+       .sprite(this.gs.player.x, this.gs.player.y, "dude");
       //  .setCollideWorldBounds(true);
 
-    
     this.physics.add.collider(this.player, worldLayer);
+
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'turn',
+      frames: [ { key: 'dude', frame: 4 } ],
+      frameRate: 20
+    });
+
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
     // this.background = this.add.image(400, 300, "assets");
 
-  // 3) Input
-  this.cursors = this.input.keyboard!.createCursorKeys();
+    // 3) Input
+    this.cursors = this.input.keyboard!.createCursorKeys();
 
     // 4) Câmera segue o sprite (opcional)
     this.cameras.main.startFollow(this.player);
