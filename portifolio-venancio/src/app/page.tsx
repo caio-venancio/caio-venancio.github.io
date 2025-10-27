@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer"
 // import { Aside } from "@/components/aside"
 // import Posts from "@/components/posts"
 import HeroBlock from '@/components/herobanner'
-import { CarouselDemo } from "../components/demo/carrouseldemo";
+import { PostCarousel } from "@/components/postcarousel";
 
  
 
@@ -48,12 +48,12 @@ export default function Home() {
       {/* border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
       
       <Section className=" bg-cover bg-center min-h-screen relative">
-        <div className="absolute inset-0">
+        {/* <div className="absolute inset-0">
               {/* rounded-[1rem]
               bg-white/5 backdrop-blur-[5px]
-              border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
-        <CarouselDemo />
-        </div>
+              border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50
+        </div> */}
+      <PostCarousel />
         
       </Section>
 
