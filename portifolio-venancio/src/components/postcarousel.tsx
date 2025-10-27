@@ -35,8 +35,8 @@ export function PostCarousel() {
         ))}
         
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2" />
+      <CarouselNext className="right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2" />
     </Carousel>
   )
 }
