@@ -59,7 +59,7 @@ export default function Home() {
 
       <Section className='h-[50vh]'>
         <h1> Blog </h1>
-
+        <PostCarousel />
       </Section>
 
       <Footer />

@@ -11,32 +11,23 @@ import {
 
 export function PostCarousel() {
   return (
-    <Carousel className="w-full px-4 sm:px-8 lg:px-12">
-      <CarouselContent>
-        {/* {Array.from({ length: 100 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))} */}
-        
-        {/* <div className="bg-red-400 w-50 h-50"></div> */}
-        {Array.from({ length: 4 }).map((_, index) => (
-          <CarouselItem key={index} className="pl-5 md:basis-1/2 lg:basis-1/3">
-            <div className={`bg-red-400 h-10 w-10`}>
-              <span>{index+1}</span>
-            </div>
-          </CarouselItem>
-        ))}
-        
-      </CarouselContent>
-      <CarouselPrevious className="left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2" />
-      <CarouselNext className="right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2" />
+    <Carousel className="w-full px-4 sm:px-8 lg:px-24">
+        <CarouselContent className="-ml-4"> {/* espaço desejado = 1rem (4) */}
+          {Array.from({ length: 6 }).map((_, i) => (
+            <CarouselItem
+              key={i}
+              className="pl-4 md:basis-1/2 lg:basis-1/3"
+            >
+              <div className="h-48 rounded-xl border p-4 flex">
+                <span className="text-2xl font-bold">{i + 1}</span>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      <CarouselPrevious className="left-4 sm:left-8 lg:left-12 top-1/2 -translate-y-1/2
+                                   h-8 w-8 sm:h-10 sm:w-10" />
+      <CarouselNext className="right-4 sm:right-8 lg:right-12 top-1/2 -translate-y-1/2
+                               h-8 w-8 sm:h-10 sm:w-10" />
     </Carousel>
   )
 }
