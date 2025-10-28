@@ -140,14 +140,21 @@ export class GameScene extends Scene {
     }
     else if (this.cursors.right?.isDown){
       vx = speed;
+      this.player.anims.play('right', true); //task: refatorar, tá feio esse tanto de if para fazer animação né
+    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown){
       this.player.anims.play('right', true);
+    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown) {
+      this.player.anims.play('left', true);
     } else {
       this.player.anims.play('turn');
     }
 
+
     if (this.cursors.up?.isDown){ vy = -speed;}
     else if (this.cursors.down?.isDown) vy = speed;
 
+    // patch especial para ele fazer animação
+    
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
 
