@@ -7,6 +7,7 @@ import { Scene } from 'phaser';
 export class GameScene extends Scene {
   gs!: GameState;
   player!: Phaser.Physics.Arcade.Sprite;
+  npc!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
 
@@ -86,9 +87,15 @@ export class GameScene extends Scene {
 
     // 2) Sprite visual sincronizado com o estado
     // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
-     this.player = this.physics.add
-       .sprite(this.gs.player.x, this.gs.player.y, "dude");
+    this.player = this.physics.add
+      .sprite(this.gs.player.x, this.gs.player.y, "dude");
       //  .setCollideWorldBounds(true);
+
+    this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
+    this.physics.add.collider(this.npc, worldLayer)
+    this.physics.add.collider(this.player, this.npc)
+
+    // task: fazer toggle para trocar personagem entre cubo e cara do phaser
 
     this.physics.add.collider(this.player, worldLayer);
 
@@ -149,11 +156,8 @@ export class GameScene extends Scene {
       this.player.anims.play('turn');
     }
 
-
     if (this.cursors.up?.isDown){ vy = -speed;}
     else if (this.cursors.down?.isDown) vy = speed;
-
-    // patch especial para ele fazer animação
     
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
