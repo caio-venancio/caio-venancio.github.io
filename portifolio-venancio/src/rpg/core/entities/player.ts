@@ -1,8 +1,11 @@
 // Representam players, seus dados e sua lógica
 
+import { TruckElectric } from "lucide-react";
+
 export class Player {
-    constructor(public x = 0, public y = 0, public speed = 120){}
-    hp = 100;
+    constructor(public x = 0, public y = 0, public speed = 1000){}
+    hp = 4;
+    invul = false;
     inventory: string[] = [];
 
     // move(dx: number, dy: number){
@@ -17,4 +20,21 @@ export class Player {
         this.y += (dy / len) * this.speed * dt;
     }
 
+    takeDamage(amount: number, knockback?: Phaser.Math.Vector2){
+        if (!this.invul || this.hp <= 0) return;
+        this.hp = Math.max(0, this.hp - amount);
+
+        this.invul = true;
+
+        // if (knockback){
+        //     this.setVelocity(knockback.x, knockback.y);
+        // }
+        if (this.hp === 0){
+            this.die();
+        }
+    }
+
+    die(){
+        this.speed = 0;
+    }
 }

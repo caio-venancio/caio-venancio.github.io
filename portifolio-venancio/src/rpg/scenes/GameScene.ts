@@ -13,7 +13,7 @@ export class GameScene extends Scene {
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
-  private speed = 150; // pixels / segundo
+  private speed = 1000; // pixels / segundo
 
   constructor() {
     super({ key: "rpg" });
@@ -137,7 +137,9 @@ export class GameScene extends Scene {
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
+    // const speed = this.gs.player.speed;
     const speed = this.speed;
+    console.log("Essa é a velocidade:", speed)
     let vx = 0;
     let vy = 0;
 
