@@ -3,7 +3,15 @@
 import { TruckElectric } from "lucide-react";
 
 export class Player {
-    constructor(public x = 0, public y = 0, public speed = 1000){}
+    x: number;
+    y: number;
+    speed: number;
+
+    constructor(x: number, y: number, speed: number) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+    }
     hp = 4;
     invul = false;
     inventory: string[] = [];

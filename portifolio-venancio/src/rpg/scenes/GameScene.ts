@@ -13,7 +13,7 @@ export class GameScene extends Scene {
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
-  private speed = 1000; // pixels / segundo
+  private speed: number; // pixels / segundo
 
   constructor() {
     super({ key: "rpg" });
@@ -138,7 +138,7 @@ export class GameScene extends Scene {
     if (!this.player || !this.player.body) return;
 
     // const speed = this.gs.player.speed;
-    const speed = this.speed;
+    const speed = this.gs.player.speed;
     console.log("Essa é a velocidade:", speed)
     let vx = 0;
     let vy = 0;

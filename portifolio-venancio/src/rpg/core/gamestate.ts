@@ -13,7 +13,7 @@
 import { Player } from "./entities/player";
 
 export class GameState {
-  player = new Player(721, 300, 150); // posição inicial + velocidade
+  player = new Player(721, 300, 225); // posição inicial + velocidade
 
   update(input: { up: boolean; down: boolean; left: boolean; right: boolean }, dt: number) {
     const dx = (input.right ? 1 : 0) - (input.left ? 1 : 0);
