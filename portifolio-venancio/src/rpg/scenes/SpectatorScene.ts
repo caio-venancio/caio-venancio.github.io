@@ -1,13 +1,10 @@
 // SpectatorScene.ts
 import Phaser from 'phaser'
 import { EventBus } from '../EventBus'
-// importe o tipo da sua cena principal se tiver (opcional)
-// import { GameScene } from './GameScene'
 
 type Ctx = {
   main: Phaser.Scene & {
     cameras: Phaser.Cameras.Scene2D.CameraManager
-    // opcional: se você tiver esses campos na sua cena principal
     player?: Phaser.Physics.Arcade.Sprite
     playersGroup?: Phaser.GameObjects.Group
     respawnAt?: (x: number, y: number) => void
@@ -116,7 +113,7 @@ export default class SpectatorScene extends Phaser.Scene {
   }
 
   // cria um "botão" de texto padrão
-  private addBtn(x: number, y: number, label: string, onClick: () => void) {
+  private addBtn(x: number, y: number, label: string, onClick: () => void): Phaser.GameObjects.Text {
     const t = this.add
       .text(x, y, label, {
         fontFamily: 'monospace',
@@ -136,23 +133,24 @@ export default class SpectatorScene extends Phaser.Scene {
     return t
   }
 
-  // descobre quem dá pra seguir
+  // descobre quem dá pra seguir (sem any)
   private getSpectatableTargets(): Phaser.GameObjects.Sprite[] {
     const { main } = this.ctx
+    const list: Phaser.GameObjects.Sprite[] = []
 
     // 1) preferir um grupo de players (multiplayer)
-    const list: Phaser.GameObjects.Sprite[] = []
-    const group = (main as any).playersGroup as Phaser.GameObjects.Group | undefined
+    const group = main.playersGroup
     if (group) {
       group.getChildren().forEach((obj) => {
-        const go = obj as Phaser.GameObjects.Sprite
-        if (go.active && go.visible) list.push(go)
+        if (obj instanceof Phaser.GameObjects.Sprite && obj.active && obj.visible) {
+          list.push(obj)
+        }
       })
     }
 
     // 2) se não tiver grupo, tenta o player principal
-    if (list.length === 0 && (main as any).player) {
-      const p = (main as any).player as Phaser.GameObjects.Sprite
+    if (list.length === 0 && main.player) {
+      const p = main.player
       if (p.active && p.visible) list.push(p)
     }
 
@@ -176,7 +174,9 @@ export default class SpectatorScene extends Phaser.Scene {
   private getInfoLine(): string {
     if (this.spectatable.length === 0) return 'Nenhum alvo disponível para espectar.'
     const target = this.spectatable[this.currentIndex]
-    const name = (target as any).name || `Entidade #${this.currentIndex + 1}`
+    const name = target.name && target.name.length > 0
+      ? target.name
+      : `Entidade #${this.currentIndex + 1}`
     return `Espectando: ${name}  (${this.currentIndex + 1}/${this.spectatable.length})`
   }
 
@@ -186,13 +186,14 @@ export default class SpectatorScene extends Phaser.Scene {
 
   private handleRespawn() {
     // Se a sua MainGame expõe um método de respawn:
-    if (typeof (this.ctx.main as any).respawnAt === 'function') {
-      ;(this.ctx.main as any).respawnAt(450, 300) // ajuste spawn point
+    if (this.ctx.main.respawnAt) {
+      this.ctx.main.respawnAt(450, 300) // ajuste spawn point
     } else {
       // fallback: reativa player básico, se exposto
-      const me = (this.ctx.main as any).player as Phaser.Physics.Arcade.Sprite | undefined
+      const me = this.ctx.main.player
       if (me?.body) {
-        ;(me.body as Phaser.Physics.Arcade.Body).enable = true
+        const body = me.body as Phaser.Physics.Arcade.Body
+        body.enable = true
         me.setAlpha(1).clearTint().setActive(true).setVisible(true).setPosition(100, 100)
         this.ctx.main.cameras.main.startFollow(me)
         EventBus.emit('hp:update', 100)
@@ -215,7 +216,7 @@ export default class SpectatorScene extends Phaser.Scene {
     this.input.keyboard?.removeAllListeners()
   }
 
-//   destroy() {
-//     super.destroy(true)
-//   }
+  // destroy() {
+  //   super.destroy(true)
+  // }
 }
