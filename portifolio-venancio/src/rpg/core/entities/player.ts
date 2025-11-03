@@ -4,6 +4,7 @@ export class Player {
     y: number;
     speed: number;
     hp: number = 100;
+    isPlayerFrozen: boolean = false;
 
     constructor(x: number, y: number, speed: number) {
         this.x = x;

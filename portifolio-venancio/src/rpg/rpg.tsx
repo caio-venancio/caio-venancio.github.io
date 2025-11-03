@@ -88,7 +88,6 @@ function App()
             <div>
                 HP: {hp}
             </div>
-            <h1>OLAA</h1>
         </div>
     )
 }

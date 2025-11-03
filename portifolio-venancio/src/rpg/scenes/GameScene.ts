@@ -11,9 +11,11 @@ export class GameScene extends Scene {
   npc!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
+  
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
+  
 
   constructor() {
     super({ key: "rpg" });
@@ -100,6 +102,12 @@ export class GameScene extends Scene {
       loop: true,
       callback: () => {
         this.applyDamage(7);
+        if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
+          this.freezePlayer('dead');
+          // EventBus.emit('player:dead');
+          // this.scene.launch('SpectatorUI', { main: this });
+          // this.scene.bringToTop('SpectatorUI');
+        }
       }
     });
 
@@ -157,7 +165,41 @@ export class GameScene extends Scene {
     EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
+    // === Controle de congelamento ===
+  freezePlayer(_reason?: 'dead' | 'menu') {
+    this.gs.player.isPlayerFrozen = true;
+
+    // 1) zera movimento e animações
+    this.player.setVelocity(0, 0);
+    this.player.anims.play('turn');
+
+    // 2) desabilita o corpo físico (sai do solver de colisão)
+    (this.player.body as Phaser.Physics.Arcade.Body).enable = false;
+
+    // 3) opcional: desabilitar teclado globalmente na cena
+    // (faça isso só se não houver outros controláveis locais)
+    // this.input.keyboard!.enabled = false;
+  }
+
+  unfreezePlayer() {
+    // 1) reabilita o corpo físico
+    const body = this.player.body as Phaser.Physics.Arcade.Body;
+    body.enable = true;
+    this.player.setVelocity(0, 0); // garante partida do repouso
+
+    // 2) reabilita input se você tiver desativado globalmente
+    // this.input.keyboard!.enabled = true;
+
+    this.gs.player.isPlayerFrozen = false;
+  }
+
   update(_time: number, deltaMs: number) {
+    const isPlayerFrozen = this.gs.player.isPlayerFrozen;
+    if (isPlayerFrozen) {
+      this.player.setVelocity(0, 0);
+      return;
+    }
+
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
@@ -200,5 +242,13 @@ export class GameScene extends Scene {
 
     // debug rápido sobre colisões
     // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
+  }
+
+  respawnAt(x: number, y: number) {
+    this.gs.player.hp = 100;
+    this.player.setPosition(x, y);
+    this.unfreezePlayer();
+    this.cameras.main.startFollow(this.player);
+    EventBus.emit('hp:update', this.gs.player.hp);
   }
 }
