@@ -106,8 +106,8 @@ export class GameScene extends Scene {
           this.freezePlayer('dead');
           this.player.setTint(0x888888);
           // EventBus.emit('player:dead');
-          // this.scene.launch('SpectatorUI', { main: this });
-          // this.scene.bringToTop('SpectatorUI');
+          this.scene.launch('SpectatorUI', { main: this });
+          this.scene.bringToTop('SpectatorUI');
         }
       }
     });

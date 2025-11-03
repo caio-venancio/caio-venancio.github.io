@@ -9,6 +9,7 @@ import { GameOver } from './scenes/GameOver';
 import { GameScene as MainGame } from './scenes/GameScene';
 
 import { MainMenu } from './scenes/MainMenu';
+import SpectatorUI from './scenes/SpectatorScene'
 import { AUTO, Game } from 'phaser';
 import { Preloader } from './scenes/Preloader';
 
@@ -30,7 +31,7 @@ const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.WEBGL,
     width: 800,
     height: 600,
-    scene: [ MainGame ],
+    scene: [ MainGame, SpectatorUI],
     physics: {
         default: "arcade",
         arcade: {
