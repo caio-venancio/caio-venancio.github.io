@@ -56,7 +56,9 @@ Game
     - [] Colocar balão de conversar
 - [] Colocar monstros
     - [] Colocar balão de renascer/restart
-        - [] Entender sobre state management
+        - [] colocar hp
+            - [] Ver como printar na tela o hp com react
+        - [] colocar overlay
     - [] Colocar barra de vida no player
 - [] Colocar ataque
 - [] Colocar boss

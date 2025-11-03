@@ -1,18 +1,15 @@
 // Representam players, seus dados e sua lógica
-
-import { TruckElectric } from "lucide-react";
-
 export class Player {
     x: number;
     y: number;
     speed: number;
+    hp: number = 100;
 
     constructor(x: number, y: number, speed: number) {
         this.x = x;
         this.y = y;
         this.speed = speed;
     }
-    hp = 4;
     invul = false;
     inventory: string[] = [];
 

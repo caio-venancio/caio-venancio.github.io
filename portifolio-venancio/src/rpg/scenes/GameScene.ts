@@ -1,6 +1,7 @@
 //Cena principal de jogo
 
 import { GameState } from "../core/gamestate";
+import { EventBus } from '../EventBus'
 
 import { Scene } from 'phaser';
 
@@ -13,7 +14,6 @@ export class GameScene extends Scene {
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
-  private speed: number; // pixels / segundo
 
   constructor() {
     super({ key: "rpg" });
@@ -91,6 +91,18 @@ export class GameScene extends Scene {
       .sprite(this.gs.player.x, this.gs.player.y, "dude");
       //  .setCollideWorldBounds(true);
 
+    // ================================ VIDA ================================
+    const hp = this.gs.player.hp;
+    // avisa o React do valor inicial
+    EventBus.emit('hp:update', hp);
+    this.time.addEvent({
+      delay: 1500,
+      loop: true,
+      callback: () => {
+        this.applyDamage(7);
+      }
+    });
+
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
     this.physics.add.collider(this.npc, worldLayer)
     this.physics.add.collider(this.player, this.npc)
@@ -131,6 +143,18 @@ export class GameScene extends Scene {
     // inicializa estado a partir da posição física
     this.gs.player.x = this.player.x;
     this.gs.player.y = this.player.y;
+
+
+  }
+
+  applyDamage(amount: number) {
+    this.gs.player.hp = Math.max(0, this.gs.player.hp - amount);
+    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
+  }
+
+  heal(amount: number) {
+    this.gs.player.hp = Math.min(100, this.gs.player.hp + amount);
+    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
   update(_time: number, deltaMs: number) {
