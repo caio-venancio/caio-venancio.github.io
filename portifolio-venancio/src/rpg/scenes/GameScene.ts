@@ -104,6 +104,7 @@ export class GameScene extends Scene {
         this.applyDamage(7);
         if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
           this.freezePlayer('dead');
+          this.player.setTint(0x888888);
           // EventBus.emit('player:dead');
           // this.scene.launch('SpectatorUI', { main: this });
           // this.scene.bringToTop('SpectatorUI');
@@ -250,5 +251,6 @@ export class GameScene extends Scene {
     this.unfreezePlayer();
     this.cameras.main.startFollow(this.player);
     EventBus.emit('hp:update', this.gs.player.hp);
+    this.player.clearTint();
   }
 }
