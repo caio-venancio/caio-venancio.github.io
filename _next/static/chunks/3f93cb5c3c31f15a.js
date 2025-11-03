@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,26474,c=>{"use strict";c.s(["Section",()=>e]);var t=c.i(43476);function e(c){let{className:e,children:s}=c;return(0,t.jsx)("section",{className:"".concat(e),children:(0,t.jsx)("div",{className:"mx-auto max-w-6xl h-full",children:s})})}}]);
