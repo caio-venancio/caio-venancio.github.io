@@ -6,6 +6,7 @@ function App()
 {
     // The sprite can only be moved in the MainMenu Scene
     const [canMoveSprite, setCanMoveSprite] = useState(true);
+    const [hp, setHp] = useState(100)
 
     //  References to the PhaserGame component (game and scene are exposed)
     const phaserRef = useRef<IRefPhaserGame | null>(null);
@@ -82,7 +83,11 @@ function App()
 
     return (
         <div id="app">
-            <PhaserGame ref={phaserRef} currentActiveScene={currentScene} />
+            <PhaserGame ref={phaserRef} currentActiveScene={currentScene} onHpChange={setHp} />
+            {/* <HUD /> */}
+            <div>
+                HP: {hp}
+            </div>
         </div>
     )
 }

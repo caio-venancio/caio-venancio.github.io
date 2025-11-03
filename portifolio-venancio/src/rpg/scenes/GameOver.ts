@@ -1,3 +1,4 @@
+// talvez SpectatorScene esteja mudando esta
 import { EventBus } from '../EventBus';
 import { Scene } from 'phaser';
 

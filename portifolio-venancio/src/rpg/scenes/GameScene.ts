@@ -1,18 +1,21 @@
 //Cena principal de jogo
 
 import { GameState } from "../core/gamestate";
+import { EventBus } from '../EventBus'
 
 import { Scene } from 'phaser';
 
 export class GameScene extends Scene {
   gs!: GameState;
   player!: Phaser.Physics.Arcade.Sprite;
+  npc!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
+  
 
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
-  private speed = 150; // pixels / segundo
+  
 
   constructor() {
     super({ key: "rpg" });
@@ -23,11 +26,16 @@ export class GameScene extends Scene {
     // this.load.atlas("assets", "assets/games/breakout/breakout.png", "assets/games/breakout/breakout.json");
     this.load.image("tiles", "/assets/tiles/tuxmon-sample-32px-extruded.png");
     this.load.tilemapTiledJSON("map", "/assets/maps/tuxemon-town.json");
+    this.load.spritesheet('dude', 
+        '/assets/sprites/dude.png',
+        { frameWidth: 32, frameHeight: 48 }
+    );
 
   }
 
   create() {
      // 1) criar o tilemap a partir do JSON
+
     const map = this.make.tilemap({ key: "map" });
 
     // debug: listar tilesets presentes no JSON
@@ -81,17 +89,61 @@ export class GameScene extends Scene {
 
     // 2) Sprite visual sincronizado com o estado
     // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
-     this.player = this.physics.add
-       .sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
+    this.player = this.physics.add
+      .sprite(this.gs.player.x, this.gs.player.y, "dude");
       //  .setCollideWorldBounds(true);
 
-    
+    // ================================ VIDA ================================
+    const hp = this.gs.player.hp;
+    // avisa o React do valor inicial
+    EventBus.emit('hp:update', hp);
+    this.time.addEvent({
+      delay: 1500,
+      loop: true,
+      callback: () => {
+        this.applyDamage(7);
+        if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
+          this.freezePlayer('dead');
+          this.player.setTint(0x888888);
+          // EventBus.emit('player:dead');
+          this.scene.launch('SpectatorUI', { main: this });
+          this.scene.bringToTop('SpectatorUI');
+        }
+      }
+    });
+
+    this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
+    this.physics.add.collider(this.npc, worldLayer)
+    this.physics.add.collider(this.player, this.npc)
+
+    // task: fazer toggle para trocar personagem entre cubo e cara do phaser
+
     this.physics.add.collider(this.player, worldLayer);
+
+    this.anims.create({
+      key: 'left',
+      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
+      frameRate: 10,
+      repeat: -1
+    });
+
+    this.anims.create({
+      key: 'turn',
+      frames: [ { key: 'dude', frame: 4 } ],
+      frameRate: 20
+    });
+
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
+      frameRate: 10,
+      repeat: -1
+    });
 
     // this.background = this.add.image(400, 300, "assets");
 
-  // 3) Input
-  this.cursors = this.input.keyboard!.createCursorKeys();
+    // 3) Input
+    this.cursors = this.input.keyboard!.createCursorKeys();
 
     // 4) Câmera segue o sprite (opcional)
     this.cameras.main.startFollow(this.player);
@@ -100,22 +152,82 @@ export class GameScene extends Scene {
     // inicializa estado a partir da posição física
     this.gs.player.x = this.player.x;
     this.gs.player.y = this.player.y;
+
+
+  }
+
+  applyDamage(amount: number) {
+    this.gs.player.hp = Math.max(0, this.gs.player.hp - amount);
+    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
+  }
+
+  heal(amount: number) {
+    this.gs.player.hp = Math.min(100, this.gs.player.hp + amount);
+    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
+  }
+
+    // === Controle de congelamento ===
+  freezePlayer(_reason?: 'dead' | 'menu') {
+    this.gs.player.isPlayerFrozen = true;
+
+    // 1) zera movimento e animações
+    this.player.setVelocity(0, 0);
+    this.player.anims.play('turn');
+
+    // 2) desabilita o corpo físico (sai do solver de colisão)
+    (this.player.body as Phaser.Physics.Arcade.Body).enable = false;
+
+    // 3) opcional: desabilitar teclado globalmente na cena
+    // (faça isso só se não houver outros controláveis locais)
+    // this.input.keyboard!.enabled = false;
+  }
+
+  unfreezePlayer() {
+    // 1) reabilita o corpo físico
+    const body = this.player.body as Phaser.Physics.Arcade.Body;
+    body.enable = true;
+    this.player.setVelocity(0, 0); // garante partida do repouso
+
+    // 2) reabilita input se você tiver desativado globalmente
+    // this.input.keyboard!.enabled = true;
+
+    this.gs.player.isPlayerFrozen = false;
   }
 
   update(_time: number, deltaMs: number) {
+    const isPlayerFrozen = this.gs.player.isPlayerFrozen;
+    if (isPlayerFrozen) {
+      this.player.setVelocity(0, 0);
+      return;
+    }
+
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
-    const speed = this.speed;
+    // const speed = this.gs.player.speed;
+    const speed = this.gs.player.speed;
+    console.log("Essa é a velocidade:", speed)
     let vx = 0;
     let vy = 0;
 
-    if (this.cursors.left?.isDown) vx = -speed;
-    else if (this.cursors.right?.isDown) vx = speed;
+    if (this.cursors.left?.isDown) {
+      vx = -speed;
+      this.player.anims.play('left', true);
+    }
+    else if (this.cursors.right?.isDown){
+      vx = speed;
+      this.player.anims.play('right', true); //task: refatorar, tá feio esse tanto de if para fazer animação né
+    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown){
+      this.player.anims.play('right', true);
+    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown) {
+      this.player.anims.play('left', true);
+    } else {
+      this.player.anims.play('turn');
+    }
 
-    if (this.cursors.up?.isDown) vy = -speed;
+    if (this.cursors.up?.isDown){ vy = -speed;}
     else if (this.cursors.down?.isDown) vy = speed;
-
+    
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
 
@@ -131,5 +243,14 @@ export class GameScene extends Scene {
 
     // debug rápido sobre colisões
     // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
+  }
+
+  respawnAt(x: number, y: number) {
+    this.gs.player.hp = 100;
+    this.player.setPosition(x, y);
+    this.unfreezePlayer();
+    this.cameras.main.startFollow(this.player);
+    EventBus.emit('hp:update', this.gs.player.hp);
+    this.player.clearTint();
   }
 }

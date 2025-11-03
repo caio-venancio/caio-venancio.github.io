@@ -11,9 +11,10 @@ export interface IRefPhaserGame
 interface IProps
 {
     currentActiveScene?: (scene_instance: Phaser.Scene) => void
+    onHpChange?: (hp: number) => void
 }
 
-export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene }, ref)
+export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene, onHpChange }, ref)
 {
     const game = useRef<Phaser.Game | null>(null!);
 
@@ -53,29 +54,30 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
         {
             if (currentActiveScene && typeof currentActiveScene === 'function')
             {
-
                 currentActiveScene(scene_instance);
-
             }
 
             if (typeof ref === 'function')
             {
-
                 ref({ game: game.current, scene: scene_instance });
-            
             } else if (ref)
             {
-
                 ref.current = { game: game.current, scene: scene_instance };
-
             }
+        
             
         });
+
+        // hp updates
+        const onHpUpdated = (hp: number) => {
+            onHpChange?.(hp);   
+        };
+        EventBus.on('hp:update', onHpUpdated); 
+
         return () =>
         {
-
             EventBus.removeListener('current-scene-ready');
-        
+            EventBus.removeListener('hp:update', onHpUpdated);
         }
     }, [currentActiveScene, ref]);
 

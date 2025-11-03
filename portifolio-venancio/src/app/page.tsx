@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 // import { Aside } from "@/components/aside"
 // import Posts from "@/components/posts"
 import HeroBlock from '@/components/herobanner'
+import { PostCarousel } from "@/components/postcarousel";
 
  
 
@@ -46,12 +47,23 @@ export default function Home() {
       {/* relative rounded-[1rem] */}
       {/* border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
       
-      <Section className=" bg-cover bg-center min-h-screen relative">
-        <div className="absolute inset-0">
+      <Section className=" h-[50vh] relative">
+        <div className="w-full relative mx-auto max-w-6xl px-6  flex flex-col gap-4 pt-4"> {/*task: transformar este div em componente, task: centralizar verticalmente div no section */} 
+          <h1 className="text-2xl sm:text-2xl font-bold leading-tight drop-shadow"> Projetos </h1> {/*task: alterar fonte e estilo?*/}
+          <PostCarousel />
+        </div>
+        {/* <div className="absolute inset-0">
               {/* rounded-[1rem]
               bg-white/5 backdrop-blur-[5px]
-              border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50 */}
-        </div>  
+              border border-t-gray-400/50 border-r-black/50 border-b-black/50 border-l-gray-400/50
+        </div> */}
+      </Section>
+
+      <Section className='h-[50vh]'>
+        <div className="relative mx-auto max-w-6xl px-6  flex flex-col gap-4 pt-4">
+          <h1 className="text-2xl sm:text-2xl font-bold leading-tight drop-shadow"> Blog </h1>
+          <PostCarousel />
+        </div>
       </Section>
 
       <Footer />
