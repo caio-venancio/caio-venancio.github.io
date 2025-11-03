@@ -1,4 +1,6 @@
 Static
+- [] Adicionar licença 
+    - [] Descobrir se tem como separar licença da pasta do jogo para código do site
 - [] Fazer página inicial de Jogar
 - [] Fazer página Home
     - [] Colocar um carrosel de cards
@@ -24,10 +26,14 @@ Static
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html
 
+// https://www.justinmind.com/ui-design/carousel
+// https://www.brunoribas.com.br/#toc1
+// https://martinfowler.com/
+
 Game
 - [X] Fazer bloco que se mexe com setas ou wasd em fake zelda
 - [] Conferir a estrutura dos jogos
-- [] Descobrir o que EventBus faz
+- [X] Descobrir o que EventBus faz
 - [X] Centralizar jogos
 - [X] Fazer player se mover no celular
 - [X] Fazer Player ser uma classe no Core
@@ -37,9 +43,22 @@ Game
     - [X] Mark Certain tiles in the world layer as colliding (verificar se estão colidindo)
     - [X] Enable AP
     - [X] Set the player to collide with the worldLayer.
-- [] Colocar sprite animation no player
-- [] Colocar ataque
+- [X] Colocar sprite animation no player
+    - [X] Colocar layer acima do player
+    - [X] Colocar assets/sprites/dude 
+    - [X] Dar preload
+    - [X] Colocar animações
+    - [X] Colocar player no local de inicio (721, 300)
+- [X] Colocar npc
+- [] Consertar npc
+    - [] Consertar física no npc
+    - [] Colocar animação de caminhada
+    - [] Colocar balão de conversar
 - [] Colocar monstros
+    - [] Colocar balão de renascer/restart
+        - [] Entender sobre state management
+    - [] Colocar barra de vida no player
+- [] Colocar ataque
 - [] Colocar boss
 - [] Fazer checklist de gamificação
 
@@ -56,3 +75,5 @@ Testes
 - [] Adicionar testes contra regressão
 - [] Adicionar testes para build
 - [] Separar interface do jogo para lógica
+
+// cubefold-craft.com

@@ -26,3 +26,6 @@ Lista de jogos parecidos não padrinhos:
 Lista de possíveis nomes:
 - Journey alguma coisa?
 - Legend? Adventure? World?
+
+Lista de Rivais:
+- Maple Forest
