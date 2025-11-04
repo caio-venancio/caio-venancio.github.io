@@ -55,10 +55,11 @@ Game
     - [] Colocar animação de caminhada
     - [] Colocar balão de conversar
 - [] Colocar monstros
-    - [] Colocar balão de renascer/restart
-        - [] colocar hp
-            - [] Ver como printar na tela o hp com react
-        - [] colocar overlay
+    - [X] Colocar balão de renascer/restart
+        - [X] colocar hp
+            - [X] Ver como printar na tela o hp com react
+        - [X] para de se mexer quando hp chegar a 0
+        - [X] colocar overlay quando hp chegar a 0
     - [] Colocar barra de vida no player
 - [] Colocar ataque
 - [] Colocar boss
