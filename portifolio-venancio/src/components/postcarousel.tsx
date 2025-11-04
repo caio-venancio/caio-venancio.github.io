@@ -25,7 +25,7 @@ export function PostCarousel() {
               </div>
             </CarouselItem>
           ))} */}
-          {console.log(allProjects.length)}
+          {/* {console.log(allProjects.length)} */}
           {allProjects.map((project, i) => (
             <CarouselItem
               key={i}
