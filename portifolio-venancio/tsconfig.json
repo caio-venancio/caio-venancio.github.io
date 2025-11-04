@@ -21,7 +21,8 @@
     "strictPropertyInitialization": false,
     "paths": {
       "@/*": ["./src/*"],
-      "content-collections": ["./.content-collections/generated"]
+      "content-collections": ["./.content-collections/generated"],
+      ".content-collections/generated": ["./.content-collections/generated/index.d.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/breakout/scenes/Game.js"],
