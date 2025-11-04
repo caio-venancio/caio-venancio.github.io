@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useState } from "react";
 // import Image from "next/image";
 // import Link from 'next/link';
 // import styles from '@/app/ui/home.module.css';
@@ -10,10 +12,20 @@ import { Footer } from "@/components/footer"
 import HeroBlock from '@/components/herobanner'
 import { PostCarousel } from "@/components/postcarousel";
 
- 
-
 
 export default function Home() {
+  const phrases = ["Designer & dev por trás deste site.",
+    "Sim, fui eu quem quebrou o layout ontem.",
+    "Este site compila — na maioria das vezes.",
+    "Colocando Easter Eggs que ninguém vê.",
+    "Fazendo software que funciona — e faz sentido.",
+    "Engenheiro de software com humor em tempo de execução.",
+    "Criando o impossível com npm run hope"]
+  const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random() * phrases.length))
+  useEffect(() => {
+      console.log(randomNumber)
+    }, [])
+
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
     <main className="flex min-h-screen flex-col bg-white relative">
@@ -30,7 +42,7 @@ export default function Home() {
               </div> */}
               <HeroBlock
                 title="Caio Venâncio"
-                subtitle="Designer & dev por trás deste site."
+                subtitle={`${phrases[randomNumber]}`}
                 cta={{ label: "Ver mais", href: "/sobre" }}
                 overlayFrom="from-blue-900/70"
                 overlayTo="to-transparent"
