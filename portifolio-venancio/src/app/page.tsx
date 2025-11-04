@@ -1,5 +1,3 @@
-'use client'
-import { useEffect, useState } from "react";
 // import Image from "next/image";
 // import Link from 'next/link';
 // import styles from '@/app/ui/home.module.css';
@@ -22,12 +20,8 @@ export default function Home() {
                    "Engenheiro de software com humor em tempo de execução.",
                    "Criando o impossível com npm run hope."]
                     
-  const [subtitle, setSubtitle] = useState<string>("");
-  const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random() * phrases.length))
+  const randomNumber = (Math.floor(Math.random() * phrases.length))
 
-  useEffect(() => {
-      setSubtitle(phrases[randomNumber])
-    }, [])
 
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
@@ -45,7 +39,8 @@ export default function Home() {
               </div> */}
               <HeroBlock
                 title="Caio Venâncio"
-                subtitle={subtitle || " "}
+                subtitle={phrases}
+                initialIndex={randomNumber}
                 cta={{ label: "Ver mais", href: "/sobre" }}
                 overlayFrom="from-blue-900/70"
                 overlayTo="to-transparent"

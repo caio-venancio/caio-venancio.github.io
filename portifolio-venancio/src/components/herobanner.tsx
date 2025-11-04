@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button"; // opcional: remova se não usar shadcn
+import { useState } from "react";
 
 type Align = "left" | "center" | "right";
 
 interface HeroBannerProps {
   eyebrow?: string;
   title: React.ReactNode;
-  subtitle?: string;
+  subtitle?: string|string[];
+  initialIndex?: number;
   cta?: { label: string; href: string; target?: "_blank" | "_self" };
   bgImage?: string;                // url da imagem de fundo
   overlayFrom?: string;            // ex: "from-black/60"
@@ -21,6 +23,7 @@ export default function HeroBlock({
   eyebrow,
   title,
   subtitle,
+  initialIndex,
   cta,
   bgImage,
   overlayFrom = "from-black/50",
@@ -33,6 +36,15 @@ export default function HeroBlock({
     center: "items-center text-center",
     right:  "items-end text-right",
   };
+
+  let phrase = "";
+  const [randomNumber, setRandomNumber] = useState<number>(initialIndex ?? 0)
+  if (Array.isArray(subtitle)){
+    phrase = subtitle[randomNumber]
+  } else if (typeof subtitle == "string") {
+    phrase = subtitle
+  }
+
 
   return (
     <section
@@ -52,7 +64,7 @@ export default function HeroBlock({
         <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight text-white drop-shadow">
           {title}
         </h1>
-        {subtitle && <p className="text-lg sm:text-xl text-white/90 max-w-2xl">{subtitle}</p>}
+        {subtitle && <p className="text-lg sm:text-xl text-white/90 max-w-2xl">{phrase}</p>}
 
         {cta && (
           <div className="mt-6">

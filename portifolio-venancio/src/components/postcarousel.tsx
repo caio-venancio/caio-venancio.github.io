@@ -14,7 +14,7 @@ import {
 export function PostCarousel() {
   return (
     <Carousel className="w-full px-4 sm:px-8 lg:px-24">
-        <CarouselContent className="-ml-4"> {/* espaço desejado = 1rem (4) */}
+        <CarouselContent className="-ml-4">{/* espaço desejado = 1rem (4) */}
           {/* {Array.from({ length: 6 }).map((_, i) => (
             <CarouselItem
               key={i}
@@ -25,7 +25,6 @@ export function PostCarousel() {
               </div>
             </CarouselItem>
           ))} */}
-          {/* {console.log(allProjects.length)} */}
           {allProjects.map((project, i) => (
             <CarouselItem
               key={i}
