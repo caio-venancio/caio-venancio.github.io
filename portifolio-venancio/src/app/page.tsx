@@ -15,15 +15,18 @@ import { PostCarousel } from "@/components/postcarousel";
 
 export default function Home() {
   const phrases = ["Designer & dev por trás deste site.",
-    "Sim, fui eu quem quebrou o layout ontem.",
-    "Este site compila — na maioria das vezes.",
-    "Colocando Easter Eggs que ninguém vê.",
-    "Fazendo software que funciona — e faz sentido.",
-    "Engenheiro de software com humor em tempo de execução.",
-    "Criando o impossível com npm run hope"]
+                   "Sim, fui eu quem quebrou o layout ontem.",
+                   "Este site compila — na maioria das vezes.",
+                   "Colocando Easter Eggs que ninguém vê.",
+                   "Fazendo software que funciona — e faz sentido.",
+                   "Engenheiro de software com humor em tempo de execução.",
+                   "Criando o impossível com npm run hope."]
+                    
+  const [subtitle, setSubtitle] = useState<string>("");
   const [randomNumber, setRandomNumber] = useState<number>(Math.floor(Math.random() * phrases.length))
+
   useEffect(() => {
-      console.log(randomNumber)
+      setSubtitle(phrases[randomNumber])
     }, [])
 
   return (
@@ -42,7 +45,7 @@ export default function Home() {
               </div> */}
               <HeroBlock
                 title="Caio Venâncio"
-                subtitle={`${phrases[randomNumber]}`}
+                subtitle={subtitle || " "}
                 cta={{ label: "Ver mais", href: "/sobre" }}
                 overlayFrom="from-blue-900/70"
                 overlayTo="to-transparent"
