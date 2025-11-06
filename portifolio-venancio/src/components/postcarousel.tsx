@@ -54,12 +54,31 @@ export function PostCarousel({ items }: { items: PostItem[] }) {
               key={i}
               className="pl-4 md:basis-1/2 lg:basis-1/3"
             >
-              <div className="h-48 rounded-xl border p-4 flex">
-                <p className="text-2xl font-bold">{i + 1}</p>
-                <div>
-                  <h1>{item.title}</h1>
+
+              {/* <div className="h-48 w-[280px] rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-4 flex flex-col justify-between shadow-lg transition hover:scale-105 hover:border-white/40">
+                <div className="flex items-start gap-3">
+                  <p className="text-3xl font-bold">{i + 1}</p>
+                  <h1 className="text-lg font-semibold">{item.title}</h1>
                 </div>
+                <p className="text-sm line-clamp-2">{item.short_description}</p>
+              </div> */}
+
+
+
+              <div className="h-48 w-[280px] rounded-xl border border-gray-200 hover:border-gray-300 bg-white p-4 flex flex-col justify-between 
+                              transition hover:scale-105
+                              active:scale-95 
+                              focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:outline-none
+                              aria-[pressed=true]:scale-95">
+                <div className="flex items-start gap-3">
+                  <p className="text-2xl font-bold text-gray-400">{i + 1}</p>
+                  <h1 className="text-lg font-semibold text-gray-800">{item.title}</h1>
+                </div>
+                <p className="text-sm text-gray-500 line-clamp-3">{item.short_description}</p>
+                <p className="text-sm text-gray-500 line-clamp-2">{item.slug}</p>
               </div>
+
+
             </CarouselItem>
           ))}
 

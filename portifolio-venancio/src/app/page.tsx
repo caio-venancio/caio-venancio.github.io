@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer"
 // import Posts from "@/components/posts"
 import HeroBlock from '@/components/herobanner'
 import { PostCarousel } from "@/components/postcarousel";
+import { PostItem } from "@/components/postcarousel"
 import { allProjects, allPosts } from 'content-collections'
 
 
@@ -23,7 +24,7 @@ export default function Home() {
                     
   const randomNumber = (Math.floor(Math.random() * phrases.length))
   
-  const items = allProjects
+  const projectItems = allProjects
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .map(p => ({
       title: p.title,
@@ -33,6 +34,8 @@ export default function Home() {
       short_description: p.short_description,
       tags: p.tags ?? [],
   }))
+
+  const items: PostItem[] = [];
 
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
@@ -71,7 +74,7 @@ export default function Home() {
       <Section className=" h-[50vh] relative">
         <div className="w-full relative mx-auto max-w-6xl px-6  flex flex-col gap-4 pt-4"> {/*task: transformar este div em componente, task: centralizar verticalmente div no section */} 
           <h1 className="text-2xl sm:text-2xl font-bold leading-tight drop-shadow"> Projetos </h1> {/*task: alterar fonte e estilo?*/}
-          <PostCarousel items={items}/>
+          <PostCarousel items={projectItems}/>
         </div>
         {/* <div className="absolute inset-0">
               {/* rounded-[1rem]
