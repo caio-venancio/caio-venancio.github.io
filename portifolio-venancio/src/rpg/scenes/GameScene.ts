@@ -101,7 +101,7 @@ export class GameScene extends Scene {
       delay: 1500,
       loop: true,
       callback: () => {
-        this.applyDamage(7);
+        // this.applyDamage(7);
         if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
           this.freezePlayer('dead');
           this.player.setTint(0x888888);
@@ -195,6 +195,7 @@ export class GameScene extends Scene {
   }
 
   update(_time: number, deltaMs: number) {
+    this.updateAngryNpc();
     const isPlayerFrozen = this.gs.player.isPlayerFrozen;
     if (isPlayerFrozen) {
       this.player.setVelocity(0, 0);
@@ -243,6 +244,18 @@ export class GameScene extends Scene {
 
     // debug rápido sobre colisões
     // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
+  }
+
+  updateAngryNpc(){
+    if (this.npc && this.player) {
+      const speed = 50
+      const direction = new Phaser.Math.Vector2(
+        this.player.x - this.npc.x,
+        this.player.y - this.npc.y
+      ).normalize()
+
+      this.npc.setVelocity(direction.x * speed, direction.y * speed)
+    }
   }
 
   respawnAt(x: number, y: number) {

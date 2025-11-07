@@ -11,11 +11,15 @@ Static
                 impressionante
             - [X] Aplica vidro fosco
                 ficou bom não
+        - [X] Colocar elementos coletados no card de forma elegante 
+        - [] Colocar 4 collection <AQUI>
     - [X] Decidir barra lateral
         por hora não vou por.
     - [X] Decidir fundo de section
         degradê azul no cinza ficou bom
-    - [] Colocar frases aleatórias debaixo do meu nome.
+    - [X] Colocar frases aleatórias debaixo do meu nome.
+    - [] Fazer nova frase aleatória com F5 de algum jeito, agora está por build <AQUI>
+    - [X] Colocar links para contato 
 - [] Fazer página Sobre
 - [] Fazer página Projetos
     - [] Fazer uma página por projeto
@@ -61,6 +65,10 @@ Game
         - [X] para de se mexer quando hp chegar a 0
         - [X] colocar overlay quando hp chegar a 0
     - [] Colocar barra de vida no player
+    - [] Fazer entidade dar dano na collision <AQUI>
+    - [X] Fazer entidade perseguir <AQUI>
+    - [] Fazer player atacar 
+    - [] Fazer monstro morrer
 - [] Colocar ataque
 - [] Colocar boss
 - [] Fazer checklist de gamificação
@@ -73,6 +81,7 @@ Mobile
 - [] Ver como fazer responsividade com react e com tailwind
     - [] Meta viewport
     - [X] Colocar pai com `flex-1 min-w-0` e filhos com `flex-wrap overflow-x-auto` no header
+    - [] Adaptar header com dropdown para celular <AQUI>
 
 Testes
 - [] Adicionar testes contra regressão
