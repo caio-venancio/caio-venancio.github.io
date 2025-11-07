@@ -114,7 +114,7 @@ export class GameScene extends Scene {
 
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
     this.physics.add.collider(this.npc, worldLayer)
-    this.physics.add.collider(this.player, this.npc)
+    this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
     // this.npc.setImmovable(true)
     // this.player.setImmovable(true)
     // this.player.setCollideWorldBounds(true)
@@ -157,6 +157,39 @@ export class GameScene extends Scene {
     this.gs.player.y = this.player.y;
 
 
+  }
+
+  handleNpcCollision(a: any, b: any) {
+      const player = a as Phaser.Physics.Arcade.Sprite;
+      const npc    = b as Phaser.Physics.Arcade.Sprite;
+    if (!this.gs.player.invul) {
+      this.gs.player.hp -= 25
+      console.log(`O player tomou 25 de dano! Vida atual: ${this.gs.player.hp}`)
+
+      // ⚡ Efeito de empurrão (knockback) opcional:
+      const knockback = 100
+      if (player.x < npc.x) {
+        player.setVelocityX(-knockback)
+      } else {
+        player.setVelocityX(knockback)
+      }
+
+      // 🕒 Invulnerabilidade temporária:
+      this.gs.player.invul = true
+      this.time.delayedCall(1000, () => this.gs.player.invul = false) // 1 segundo
+
+      // 🩸 Efeito visual opcional
+      player.setTint(0xff0000)
+      this.time.delayedCall(200, () => player.clearTint())
+
+      // ☠️ Morte
+      // if (this.gs.player.hp <= 0) {
+      //   console.log("Player morreu!")
+      //   player.setTint(0x000000)
+      //   player.setVelocity(0)
+      //   player.anims.play('death', true) // se tiver animação
+      // }
+    }
   }
 
   applyDamage(amount: number) {
