@@ -65,10 +65,11 @@ Game
         - [X] para de se mexer quando hp chegar a 0
         - [X] colocar overlay quando hp chegar a 0
     - [] Colocar barra de vida no player
-    - [] Fazer entidade dar dano na collision <AQUI>
-    - [X] Fazer entidade perseguir <AQUI>
-    - [] Fazer player atacar 
-    - [] Fazer monstro morrer
+    - [X] Fazer entidade dar dano na collision 
+    - [X] Fazer entidade perseguir 
+    - [] Colocar knockback 
+    - [] Fazer player atacar <AQUI>
+    - [] Fazer monstro morrer <AQUI>
 - [] Colocar ataque
 - [] Colocar boss
 - [] Fazer checklist de gamificação
