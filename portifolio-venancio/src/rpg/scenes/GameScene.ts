@@ -159,9 +159,8 @@ export class GameScene extends Scene {
 
   }
 
-  handleNpcCollision(a: any, b: any) {
-      const player = a as Phaser.Physics.Arcade.Sprite;
-      const npc    = b as Phaser.Physics.Arcade.Sprite;
+  handleNpcCollision() {
+
     if (!this.gs.player.invul) {
       this.gs.player.hp -= 25
       EventBus.emit('hp:update', this.gs.player.hp);
@@ -180,8 +179,8 @@ export class GameScene extends Scene {
       this.time.delayedCall(1000, () => this.gs.player.invul = false) // 1 segundo
 
       // 🩸 Efeito visual opcional
-      player.setTint(0xff0000)
-      this.time.delayedCall(200, () => player.clearTint())
+      this.player.setTint(0xff0000)
+      this.time.delayedCall(200, () => this.player.clearTint())
 
       // ☠️ Morte
       // if (this.gs.player.hp <= 0) {
