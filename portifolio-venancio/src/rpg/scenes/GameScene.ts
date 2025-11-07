@@ -115,9 +115,12 @@ export class GameScene extends Scene {
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
     this.physics.add.collider(this.npc, worldLayer)
     this.physics.add.collider(this.player, this.npc)
+    // this.npc.setImmovable(true)
+    // this.player.setImmovable(true)
+    // this.player.setCollideWorldBounds(true)
 
     // task: fazer toggle para trocar personagem entre cubo e cara do phaser
-
+    // this.player.setBodySize(32, 48, true)  
     this.physics.add.collider(this.player, worldLayer);
 
     this.anims.create({
