@@ -1,5 +1,5 @@
----
-title: "Contador de Metas"
+<!-- ---
+title: "Template"
 slug: "slug"
 subtitle: "Subtítulo em algumas palavras e palavras"
 type: "Template"
@@ -48,4 +48,4 @@ learned: >
 references:
   - "Gamma, E. et al. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994."
   - "Eberly, D. Game Engine Architecture. CRC Press, 2022."
----
+--- -->
