@@ -12,7 +12,11 @@ Static
             - [X] Aplica vidro fosco
                 ficou bom não
         - [X] Colocar elementos coletados no card de forma elegante 
-        - [] Colocar 4 collection <AQUI>
+        - [] Colocar 4 collection 
+            - [] Fazer template vazio <AQUI>
+            - [] Fazer Agio
+            - [] Fazer SuaPesquisaDeMatérias
+            - [] Fazer SeuPontoDigital
     - [X] Decidir barra lateral
         por hora não vou por.
     - [X] Decidir fundo de section
@@ -26,7 +30,7 @@ Static
     - [] Colocar um carrosel de páginas de projeto
     - [] Colocar um contador de tecnologias
 - [] Fazer Blog
-- [] Fazer layout que se repete em todas as páginas (header, por exemplo)
+- [X] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html
 
@@ -37,6 +41,15 @@ Static
 Game
 - [X] Fazer bloco que se mexe com setas ou wasd em fake zelda
 - [] Conferir a estrutura dos jogos
+    - [] colocar todas as funções que não seja as básicas da scene em outro lugar
+        - [X] Colocar uma função fora para teste (não deu bom)
+    - [] Ver algumas referências de component-based architecure ou de architeturas de peformance e modularidade
+        - [] Entender o básico de arquitetura <AQUI>
+        - [] Component-Based (CBA)
+        - [] ECS (Entity–Component–System)
+        - [] Layered (Camadas)
+        - [] Ports & Adapters (Hexagonal)
+        - [] Event-Driven (Pub/Sub)
 - [X] Descobrir o que EventBus faz
 - [X] Centralizar jogos
 - [X] Fazer player se mover no celular
@@ -68,8 +81,11 @@ Game
     - [X] Fazer entidade dar dano na collision 
     - [X] Fazer entidade perseguir 
     - [] Colocar knockback 
-    - [] Fazer player atacar <AQUI>
-    - [] Fazer monstro morrer <AQUI>
+    - [] Fazer player atacar 
+        - [] Pegar sprite da espada <AQUI>
+        - [] fazer função de ataque com ângulo
+        - [] fazer checagem de colisão
+    - [] Fazer monstro morrer 
 - [] Colocar ataque
 - [] Colocar boss
 - [] Fazer checklist de gamificação
