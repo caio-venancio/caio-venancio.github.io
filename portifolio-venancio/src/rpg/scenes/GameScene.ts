@@ -164,15 +164,16 @@ export class GameScene extends Scene {
       const npc    = b as Phaser.Physics.Arcade.Sprite;
     if (!this.gs.player.invul) {
       this.gs.player.hp -= 25
+      EventBus.emit('hp:update', this.gs.player.hp);
       console.log(`O player tomou 25 de dano! Vida atual: ${this.gs.player.hp}`)
 
       // ⚡ Efeito de empurrão (knockback) opcional:
-      const knockback = 100
-      if (player.x < npc.x) {
-        player.setVelocityX(-knockback)
-      } else {
-        player.setVelocityX(knockback)
-      }
+      // const knockback = 100
+      // if (player.x <= npc.x) {
+      //   a.setVelocityX(knockback)
+      // } else {
+      //   a.setVelocityX(-knockback)
+      // }
 
       // 🕒 Invulnerabilidade temporária:
       this.gs.player.invul = true
