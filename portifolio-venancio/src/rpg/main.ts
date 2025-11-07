@@ -35,7 +35,9 @@ const config: Phaser.Types.Core.GameConfig = {
     physics: {
         default: "arcade",
         arcade: {
-            gravity: { x: 0, y: 0 } //top down game, so no gravity
+            gravity: { x: 0, y: 0 }, //top down game, so no gravity
+            fps: 120,          // mais passos, menos túnel
+            tileBias: 32       // ajuda na separação sprite vs tile
         }
     }
 };

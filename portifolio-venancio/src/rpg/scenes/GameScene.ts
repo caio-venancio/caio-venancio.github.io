@@ -101,7 +101,7 @@ export class GameScene extends Scene {
       delay: 1500,
       loop: true,
       callback: () => {
-        this.applyDamage(7);
+        // this.applyDamage(7);
         if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
           this.freezePlayer('dead');
           this.player.setTint(0x888888);
@@ -114,10 +114,13 @@ export class GameScene extends Scene {
 
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
     this.physics.add.collider(this.npc, worldLayer)
-    this.physics.add.collider(this.player, this.npc)
+    this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
+    // this.npc.setImmovable(true)
+    // this.player.setImmovable(true)
+    // this.player.setCollideWorldBounds(true)
 
     // task: fazer toggle para trocar personagem entre cubo e cara do phaser
-
+    // this.player.setBodySize(32, 48, true)  
     this.physics.add.collider(this.player, worldLayer);
 
     this.anims.create({
@@ -154,6 +157,40 @@ export class GameScene extends Scene {
     this.gs.player.y = this.player.y;
 
 
+  }
+
+  handleNpcCollision(a: any, b: any) {
+      const player = a as Phaser.Physics.Arcade.Sprite;
+      const npc    = b as Phaser.Physics.Arcade.Sprite;
+    if (!this.gs.player.invul) {
+      this.gs.player.hp -= 25
+      EventBus.emit('hp:update', this.gs.player.hp);
+      console.log(`O player tomou 25 de dano! Vida atual: ${this.gs.player.hp}`)
+
+      // ⚡ Efeito de empurrão (knockback) opcional:
+      // const knockback = 100
+      // if (player.x <= npc.x) {
+      //   a.setVelocityX(knockback)
+      // } else {
+      //   a.setVelocityX(-knockback)
+      // }
+
+      // 🕒 Invulnerabilidade temporária:
+      this.gs.player.invul = true
+      this.time.delayedCall(1000, () => this.gs.player.invul = false) // 1 segundo
+
+      // 🩸 Efeito visual opcional
+      player.setTint(0xff0000)
+      this.time.delayedCall(200, () => player.clearTint())
+
+      // ☠️ Morte
+      // if (this.gs.player.hp <= 0) {
+      //   console.log("Player morreu!")
+      //   player.setTint(0x000000)
+      //   player.setVelocity(0)
+      //   player.anims.play('death', true) // se tiver animação
+      // }
+    }
   }
 
   applyDamage(amount: number) {
@@ -195,6 +232,7 @@ export class GameScene extends Scene {
   }
 
   update(_time: number, deltaMs: number) {
+    this.updateAngryNpc();
     const isPlayerFrozen = this.gs.player.isPlayerFrozen;
     if (isPlayerFrozen) {
       this.player.setVelocity(0, 0);
@@ -243,6 +281,18 @@ export class GameScene extends Scene {
 
     // debug rápido sobre colisões
     // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
+  }
+
+  updateAngryNpc(){
+    if (this.npc && this.player) {
+      const speed = 50
+      const direction = new Phaser.Math.Vector2(
+        this.player.x - this.npc.x,
+        this.player.y - this.npc.y
+      ).normalize()
+
+      this.npc.setVelocity(direction.x * speed, direction.y * speed)
+    }
   }
 
   respawnAt(x: number, y: number) {
