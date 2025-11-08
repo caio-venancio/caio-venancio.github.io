@@ -1,26 +1,26 @@
 ---
 title: "Pesquisa de Matérias"
-slug: "slug"
-subtitle: "Subtítulo em algumas palavras e palavras"
-type: "Template"
-category: "Documentação"
-status: "Pronto"
-date: "2025-11-07"
-updated: "2025-11-07"
+slug: "pesquisa-de-materias"
+subtitle: "Site estático básico para pesquisa de matérias na faculdade do Gama, UnB."
+type: "Site Estático"
+category: "Web Development"
+status: "Pausa"
+date: "2024-05-17"
+updated: "2024-12-10"
 
 
-thumbnail: "/alguma/rota"
+thumbnail: ""
 gallery:
-  - "/alguma/rota1"
-  - "/alguma/rota2"
+  - ""
+  - ""
 
 short_description: >
-  A modelo para criação de documentos para Posts de projetos.
+  Site estático básico para pesquisa de matérias na faculdade do Gama, UnB.
 
 tags:
-  - Markdown
-  - Content.Collections
-  - TypeScript
+  - HTML
+  - CSS
+  - JavaScript
 
 
 links:
@@ -32,20 +32,21 @@ team:
   - "Caio Venâncio (developer)"
 
 context: >
-  Projeto desenvolvido para demonstrar o uso de redes em jogos digitais.
+  Projeto desenvolvido para exercitar o uso de HTML, CSS e JavaScript enquanto facilita a busca entre as disciplinas ofertadas.
 
 objectives:
-  - Implementar um sistema multiplayer escalável
-  - Fazer estatística de estresse
-  - Testar diferentes servidores
+  - Extrair dados das matérias.
+  - Fazer site de exposição de matérias.
+  - Manter dados atualizados.
+  - Fazer filtro de matérias.
 
 challenges: >
-  Integrar o servidor WebSocket ao Phaser mantendo baixa latência e sincronização entre 128 jogadores.
+  Manter dados das matérias atualizados para o currículo e período atual.
 
 learned: >
-  Estou aprendendo ainda.
+  Aprendi como fazer documentos HTML, documentos CSS, programação Javascript, interação com o DOM, extração de dados com parser
 
 references:
-  - "Gamma, E. et al. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994."
-  - "Eberly, D. Game Engine Architecture. CRC Press, 2022."
+  - ""
+  - ""
 ---

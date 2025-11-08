@@ -13,8 +13,8 @@ Static
                 ficou bom não
         - [X] Colocar elementos coletados no card de forma elegante 
         - [] Colocar 4 collection 
-            - [] Fazer template vazio <AQUI>
-            - [] Fazer Agio
+            - [X] Fazer template vazio 
+            - [] Fazer Agio <AQUI>
             - [] Fazer SuaPesquisaDeMatérias
             - [] Fazer SeuPontoDigital
     - [X] Decidir barra lateral
@@ -22,7 +22,7 @@ Static
     - [X] Decidir fundo de section
         degradê azul no cinza ficou bom
     - [X] Colocar frases aleatórias debaixo do meu nome.
-    - [] Fazer nova frase aleatória com F5 de algum jeito, agora está por build <AQUI>
+    - [] Fazer nova frase aleatória com F5 de algum jeito, agora está por build 
     - [X] Colocar links para contato 
 - [] Fazer página Sobre
 - [] Fazer página Projetos
@@ -30,6 +30,7 @@ Static
     - [] Colocar um carrosel de páginas de projeto
     - [] Colocar um contador de tecnologias
 - [] Fazer Blog
+    - [] Ver se mini blog faz sentido <AQUI>
 - [X] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html
