@@ -25,7 +25,7 @@ tags:
 
 links:
   demo: ""
-  github: ""
+  github: "https://github.com/caio-venancio/pesquisa-de-materias-fcte"
   documentation: ""
 
 team:
