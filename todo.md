@@ -12,12 +12,12 @@ Static
             - [X] Aplica vidro fosco
                 ficou bom não
         - [X] Colocar elementos coletados no card de forma elegante 
-        - [] Colocar 4 collection 
+        - [X] Colocar 4 collection 
             - [X] Fazer template vazio 
             - [X] Fazer Agio <AQUI>
             - [X] Fazer SuaPesquisaDeMatérias
             - [X] Fazer contador
-            - [] Fazer SeuPontoDigital
+            - [X] Fazer SeuPontoDigital
     - [X] Decidir barra lateral
         por hora não vou por.
     - [X] Decidir fundo de section

@@ -4,7 +4,7 @@ slug: "pesquisa-de-materias"
 subtitle: "Site estático básico para pesquisa de matérias na faculdade do Gama, UnB."
 type: "Site Estático"
 category: "Web Development"
-status: "Pausa"
+status: "Em pausa"
 date: "2024-05-17"
 updated: "2024-12-10"
 

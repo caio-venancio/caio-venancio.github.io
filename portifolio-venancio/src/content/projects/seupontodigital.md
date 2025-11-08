@@ -1,51 +1,57 @@
 ---
 title: "SeuPontoDigital"
-slug: "slug"
-subtitle: "Subtítulo em algumas palavras e palavras"
-type: "Template"
-category: "Documentação"
-status: "Pronto"
-date: "2024-11-07"
-updated: "2024-11-07"
+slug: "seupontodigital"
+subtitle: "Aplicativo para marcação digital de ponto aliada a sistema digital de administração"
+type: "Software Marketplace"
+category: "Mobile Development"
+status: "Em pausa"
+date: "2025-04-09"
+updated: "2025-07-23"
 
 
-thumbnail: "/alguma/rota"
+thumbnail: ""
 gallery:
-  - "/alguma/rota1"
-  - "/alguma/rota2"
+  - ""
+  - ""
 
 short_description: >
-  A modelo para criação de documentos para Posts de projetos.
+  Aplicativo para marcação digital de ponto aliada a sistema digital de administração.
 
 tags:
-  - Markdown
-  - Content.Collections
+  - Express.js
+  - React
+  - React Native
+  - Expo
+  - JavaScript
   - TypeScript
+  - CSS
+  - HTML
 
 
 links:
-  demo: ""
-  github: ""
-  documentation: ""
+  demo: "https://seupontodigital.onrender.com/"
+  github: "https://github.com/mdsreq-fga-unb/2025.1-T01-SeuPontoDigital"
+  documentation: "https://mdsreq-fga-unb.github.io/2025.1-T01-SeuPontoDigital/"
 
 team:
   - "Caio Venâncio (developer)"
+  - 6 developers across the project
 
 context: >
-  Projeto desenvolvido para demonstrar o uso de redes em jogos digitais.
+  Projeto desenvolvido para praticar a utilização de requisitos no desenvolvimento de um projeto na disciplina de Requisitos de Software.
 
 objectives:
-  - Implementar um sistema multiplayer escalável
-  - Fazer estatística de estresse
-  - Testar diferentes servidores
+  - Implementar um sistema web de admin.
+  - Fazer deploy de um aplicativo seguro.
+  - Colocar a ideia no mercado.
 
 challenges: >
-  Integrar o servidor WebSocket ao Phaser mantendo baixa latência e sincronização entre 128 jogadores.
+  Conseguir uma precisão aceitável na api de geolocalização.
 
 learned: >
-  Estou aprendendo ainda.
+  Aprendi React Native, Express.js, modelo arquitetural MVC, Product Backlog.
 
 references:
-  - "Gamma, E. et al. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994."
-  - "Eberly, D. Game Engine Architecture. CRC Press, 2022."
+  - ""
+  - ""
 ---
