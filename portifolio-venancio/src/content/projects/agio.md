@@ -1,51 +1,55 @@
 ---
 title: "Agio"
-slug: "slug"
-subtitle: "Subtítulo em algumas palavras e palavras"
-type: "Template"
-category: "Documentação"
+slug: "agio"
+subtitle: "Sistema web open source para controle e monitoramento prático de inventário corporativo."
+type: "Web Application"
+category: "Web Development"
 status: "Pronto"
-date: "2025-11-07"
-updated: "2025-11-07"
+date: "2024-10-25"
+updated: "2025-02-14"
 
 
-thumbnail: "/alguma/rota"
+thumbnail: ""
 gallery:
-  - "/alguma/rota1"
-  - "/alguma/rota2"
+  - ""
+  - ""
 
 short_description: >
-  A modelo para criação de documentos para Posts de projetos.
+  Aplicação de Gestão de Inventário Otimizada (AGIO) é um sistema open source web simples desenvolvido com o objetivo de servir como um controle de inventário de uma corporação de pequeno a médio porte, é capaz de fornecer ao usuário uma maneira de gerenciar os itens presentes no inventário, adicionando e removendo os componentes de acordo com sua necessidade e monitorando-os de forma prática, simples e segura.
 
 tags:
-  - Markdown
-  - Content.Collections
-  - TypeScript
+  - HTML
+  - CSS
+  - Python
+  - Django
+  - Docker
+  - MkDocs
+  - Flake8
 
 
 links:
   demo: ""
-  github: ""
+  github: "https://github.com/unb-mds/2024-2-Agio"
   documentation: ""
 
 team:
-  - "Caio Venâncio (developer)"
+  - "Caio Venâncio (Database Administrator, Scrum Master)"
+  - 5 developers across the project
 
 context: >
-  Projeto desenvolvido para demonstrar o uso de redes em jogos digitais.
+  Projeto desenvolvido para disciplina de Métodos de Desenvolvimento de Software, da Universidade de Brasília como um sistema open source web simples com o o objetivo de servir como um controle de inventário.
 
 objectives:
-  - Implementar um sistema multiplayer escalável
-  - Fazer estatística de estresse
-  - Testar diferentes servidores
+  - Implementar servidor Django no Docker
+  - Fazer deploy do Frontend
+  - Estilizar com CSS
 
 challenges: >
-  Integrar o servidor WebSocket ao Phaser mantendo baixa latência e sincronização entre 128 jogadores.
+  Integrar o servidor Django no Railway com Frontend servido no Vercel.
 
 learned: >
-  Estou aprendendo ainda.
+  Aprendi bastante sobre Docker, Django, Deploy em Vercel, em Railway, e principalmente banco de dados
 
 references:
-  - "Gamma, E. et al. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994."
-  - "Eberly, D. Game Engine Architecture. CRC Press, 2022."
+  - ""
 ---
