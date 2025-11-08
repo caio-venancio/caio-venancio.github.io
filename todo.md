@@ -14,8 +14,9 @@ Static
         - [X] Colocar elementos coletados no card de forma elegante 
         - [] Colocar 4 collection 
             - [X] Fazer template vazio 
-            - [] Fazer Agio <AQUI>
-            - [] Fazer SuaPesquisaDeMatérias
+            - [X] Fazer Agio <AQUI>
+            - [X] Fazer SuaPesquisaDeMatérias
+            - [X] Fazer contador
             - [] Fazer SeuPontoDigital
     - [X] Decidir barra lateral
         por hora não vou por.

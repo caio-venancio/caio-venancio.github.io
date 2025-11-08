@@ -1,51 +1,49 @@
 ---
 title: "Contador de Metas"
-slug: "slug"
-subtitle: "Subtítulo em algumas palavras e palavras"
-type: "Template"
-category: "Documentação"
-status: "Pronto"
-date: "2025-11-07"
-updated: "2025-11-07"
+slug: "contador-de-metas"
+subtitle: "Software que processa listas to-do no formato .txt."
+type: "File Parser"
+category: "Script"
+status: "Em desenvolvimento"
+date: "2025-02-01"
+updated: "2025-11-08"
 
 
-thumbnail: "/alguma/rota"
+thumbnail: ""
 gallery:
-  - "/alguma/rota1"
-  - "/alguma/rota2"
+  - ""
+  - ""
 
 short_description: >
-  A modelo para criação de documentos para Posts de projetos.
+  Software que processa listas to-do no formato .txt.
 
 tags:
-  - Markdown
-  - Content.Collections
-  - TypeScript
+  - Javacript
 
 
 links:
   demo: ""
-  github: ""
+  github: "https://github.com/caio-venancio/contador-de-metas"
   documentation: ""
 
 team:
   - "Caio Venâncio (developer)"
 
 context: >
-  Projeto desenvolvido para demonstrar o uso de redes em jogos digitais.
+  Projeto desenvolvido para administrar vida pessoal.
 
 objectives:
-  - Implementar um sistema multiplayer escalável
-  - Fazer estatística de estresse
-  - Testar diferentes servidores
+  - Fazer um script que auxília a manutação de metas to-do
+  - Registra dia das metas
+  - Aceita diferentes padrões de metas .txt
 
 challenges: >
-  Integrar o servidor WebSocket ao Phaser mantendo baixa latência e sincronização entre 128 jogadores.
+  Empacotar o software com npm ou pip.
 
 learned: >
   Estou aprendendo ainda.
 
 references:
-  - "Gamma, E. et al. Design Patterns: Elements of Reusable Object-Oriented Software. Addison-Wesley, 1994."
-  - "Eberly, D. Game Engine Architecture. CRC Press, 2022."
+  - ""
+  - ""
 ---
