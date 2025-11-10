@@ -80,7 +80,7 @@ export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame
     }, [currentActiveScene, ref]);
 
     return (
-        <div id="game-container"></div>
+        <div id="game-container" className='w-screen aspect-[4/3] md:w-auto md:h-auto'></div>
     );
 
 });
