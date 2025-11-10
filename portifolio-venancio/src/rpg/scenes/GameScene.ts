@@ -1,4 +1,5 @@
 //Cena principal de jogo
+import { unfreezePlayer } from '../engine/functions';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
@@ -12,11 +13,9 @@ export class GameScene extends Scene {
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
   
-
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
   
-
   constructor() {
     super({ key: "rpg" });
   }
@@ -30,12 +29,10 @@ export class GameScene extends Scene {
         '/assets/sprites/dude.png',
         { frameWidth: 32, frameHeight: 48 }
     );
-
   }
 
   create() {
      // 1) criar o tilemap a partir do JSON
-
     const map = this.make.tilemap({ key: "map" });
 
     // debug: listar tilesets presentes no JSON
@@ -218,18 +215,6 @@ export class GameScene extends Scene {
     // this.input.keyboard!.enabled = false;
   }
 
-  unfreezePlayer() {
-    // 1) reabilita o corpo físico
-    const body = this.player.body as Phaser.Physics.Arcade.Body;
-    body.enable = true;
-    this.player.setVelocity(0, 0); // garante partida do repouso
-
-    // 2) reabilita input se você tiver desativado globalmente
-    // this.input.keyboard!.enabled = true;
-
-    this.gs.player.isPlayerFrozen = false;
-  }
-
   update(_time: number, deltaMs: number) {
     this.updateAngryNpc();
     const isPlayerFrozen = this.gs.player.isPlayerFrozen;
@@ -297,7 +282,7 @@ export class GameScene extends Scene {
   respawnAt(x: number, y: number) {
     this.gs.player.hp = 100;
     this.player.setPosition(x, y);
-    this.unfreezePlayer();
+    unfreezePlayer(this);
     this.cameras.main.startFollow(this.player);
     EventBus.emit('hp:update', this.gs.player.hp);
     this.player.clearTint();

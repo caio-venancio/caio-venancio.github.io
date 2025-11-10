@@ -4,7 +4,7 @@ slug: "infinityscaler"
 subtitle: "Plataform Top-Down 2d multiplayer feito para testar escalabilidade"
 type: "Jogo Digital"
 category: "Game Development"
-status: "Em andamento"
+status: "Em desenvolvimento"
 date: "2025-10-31"
 updated: "2025-11-03"
 
