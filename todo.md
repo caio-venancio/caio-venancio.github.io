@@ -3,8 +3,8 @@ Static
     - [] Descobrir se tem como separar licença da pasta do jogo para código do site
 - [] Fazer página inicial de Jogar
 - [] Fazer página Home
-    - [] Colocar um carrosel de cards
-        - [] Fazer um esquema com as informações para cards no frontmatter.
+    - [X] Colocar um carrosel de cards
+        - [X] Fazer um esquema com as informações para cards no frontmatter.
             - [X] Encontrar algum exemplo de carrosel com cards
                 // https://www.justinmind.com/ui-design/carousel
             - [X] Aplicar background de grama
@@ -100,7 +100,7 @@ Mobile
 - [] Ver como fazer responsividade com react e com tailwind
     - [] Meta viewport
     - [X] Colocar pai com `flex-1 min-w-0` e filhos com `flex-wrap overflow-x-auto` no header
-    - [] Adaptar header com dropdown para celular <AQUI>
+    - [X] Adaptar header com dropdown para celular <AQUI>
 
 Testes
 - [] Adicionar testes contra regressão
