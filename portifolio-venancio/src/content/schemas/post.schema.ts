@@ -7,6 +7,19 @@ export const Post = defineCollection({
   include: "**/*.md",
   schema: z.object({
     title: z.string(),
-    summary: z.string(),
+    slug: z.string(),
+    type: z.string(),
+
+    thumbnail: z.string().default(""),
+
+    short_description: z.string(),
+
+    tags: z.array(z.string()).default([]),
+
+    links: z.object({
+      demo: z.string().default(""),
+      github: z.string().default(""),
+      documentation: z.string().default(""),
+    }),
   }),
 });
