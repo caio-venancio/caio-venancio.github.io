@@ -35,7 +35,15 @@ export default function Home() {
       tags: p.tags ?? [],
   }))
 
-  const items: PostItem[] = [];
+  const postItems = allPosts
+    .map(p => ({
+      title: p.title,
+      slug: p.slug,
+      type: p.type,
+      thumbnail: p.thumbnail ?? [],
+      short_description: p.short_description,
+      tags: p.tags ?? [],
+  }))
 
   return (
     // antes estava com um p-6, o que causava um padding de 24px na página toda
@@ -86,7 +94,7 @@ export default function Home() {
       <Section className='h-[50vh]'>
         <div className="relative mx-auto max-w-6xl px-6  flex flex-col gap-4 pt-4">
           <h1 className="text-2xl sm:text-2xl font-bold leading-tight drop-shadow"> Blog </h1>
-          <PostCarousel items={items}/>
+          <PostCarousel items={postItems}/>
         </div>
       </Section>
 

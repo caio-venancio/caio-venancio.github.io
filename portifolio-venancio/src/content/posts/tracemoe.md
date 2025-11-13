@@ -1,5 +1,5 @@
 ---
-title: "trace.moe é um site incrível!"
+title: "Trace.moe é um site incrível!"
 slug: "about-tracemoe"
 type: "miniblog post"
 
