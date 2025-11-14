@@ -18,7 +18,7 @@ Static
             - [X] Fazer SuaPesquisaDeMatérias
             - [X] Fazer contador
             - [X] Fazer SeuPontoDigital
-    - [] Consertar carrosel
+    - [] Consertar carrosel (setinhas)
     - [X] Decidir barra lateral
         por hora não vou por.
     - [X] Decidir fundo de section
@@ -33,8 +33,11 @@ Static
     - [] Colocar um contador de tecnologias
 - [] Fazer Blog
     - [X] Ver se mini blog faz sentido
-    - [] Colocar parser de blog <AQUI>
-    - [] Colocar página sobre trace.moe <AQUI>
+    - [X] Colocar parser de blog <AQUI>
+    - [X] Colocar página sobre trace.moe <AQUI>
+    - [X] Fazer aparecer na página principal
+    - [] Colocar segunda página
+    - [] Colocar terceira página
 - [X] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html
