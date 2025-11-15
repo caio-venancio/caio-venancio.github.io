@@ -12,6 +12,9 @@ export class GameScene extends Scene {
   npc!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
+  worldLayer!: Phaser.Tilemaps.TilemapLayer;
+  belowLayer!: Phaser.Tilemaps.TilemapLayer;
+  aboveLayer!: Phaser.Tilemaps.TilemapLayer;
   
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
@@ -32,47 +35,7 @@ export class GameScene extends Scene {
   }
 
   create() {
-     // 1) criar o tilemap a partir do JSON
-    const map = this.make.tilemap({ key: "map" });
-
-    // debug: listar tilesets presentes no JSON
-    console.debug("map.tilesets:", map.tilesets.map(ts => ts.name));
-
-    // tenta usar o nome esperado; se não existir, usa o primeiro tileset do JSON
-    let tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
-    if (!tileset && map.tilesets.length > 0) {
-      const fallbackName = map.tilesets[0].name;
-      console.warn(
-        `Tileset 'tuxmon-sample-32px' não encontrado no map.json — usando '${fallbackName}' como fallback`
-      );
-      tileset = map.addTilesetImage(fallbackName, "tiles");
-    }
-
-    if (!tileset) {
-      throw new Error(
-        "Tileset não encontrado: verifique o nome do tileset no JSON e a chave do asset carregado."
-      );
-    }
-
-    const belowLayer = map.createLayer("Below Player", tileset, 0, 0);
-    const worldLayer = map.createLayer("World", tileset, 0, 0);
-    const aboveLayer = map.createLayer("Above Player", tileset, 0, 0);
-
-    // Conferindo se retornou com sucesso antes de utilizar
-    if (!worldLayer) {
-      throw new Error(
-        "WorldLayer não retornado por map.createLayer"
-      )
-    } else if (!aboveLayer) {
-      throw new Error(
-        "belowLayer não retornado por map.createLayer"
-      )
-    }
-
-    aboveLayer.setDepth(10);
-    worldLayer.setCollisionByProperty({ collides: true });
-
-
+    this.setupMap()
     // -------- Sempre que quiser ver as colisões atuais, descomente: -------
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
     // worldLayer.renderDebug(debugGraphics, {
@@ -110,7 +73,7 @@ export class GameScene extends Scene {
     });
 
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
-    this.physics.add.collider(this.npc, worldLayer)
+    this.physics.add.collider(this.npc, this.worldLayer)
     this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
     // this.npc.setImmovable(true)
     // this.player.setImmovable(true)
@@ -118,7 +81,7 @@ export class GameScene extends Scene {
 
     // task: fazer toggle para trocar personagem entre cubo e cara do phaser
     // this.player.setBodySize(32, 48, true)  
-    this.physics.add.collider(this.player, worldLayer);
+    this.physics.add.collider(this.player, this.worldLayer);
 
     this.anims.create({
       key: 'left',
@@ -154,6 +117,48 @@ export class GameScene extends Scene {
     this.gs.player.y = this.player.y;
 
 
+  }
+
+  setupMap(){
+    // 1) criar o tilemap a partir do JSON
+    const map = this.make.tilemap({ key: "map" });
+
+    // debug: listar tilesets presentes no JSON
+    console.debug("map.tilesets:", map.tilesets.map(ts => ts.name));
+
+    // tenta usar o nome esperado; se não existir, usa o primeiro tileset do JSON
+    let tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
+    if (!tileset && map.tilesets.length > 0) {
+      const fallbackName = map.tilesets[0].name;
+      console.warn(
+        `Tileset 'tuxmon-sample-32px' não encontrado no map.json — usando '${fallbackName}' como fallback`
+      );
+      tileset = map.addTilesetImage(fallbackName, "tiles");
+    }
+
+    if (!tileset) {
+      throw new Error(
+        "Tileset não encontrado: verifique o nome do tileset no JSON e a chave do asset carregado."
+      );
+    }
+
+    this.belowLayer = map.createLayer("Below Player", tileset, 0, 0)!;
+    this.worldLayer = map.createLayer("World", tileset, 0, 0)!;
+    this.aboveLayer = map.createLayer("Above Player", tileset, 0, 0)!;
+
+    // Conferindo se retornou com sucesso antes de utilizar
+    if (!this.worldLayer) {
+      throw new Error(
+        "WorldLayer não retornado por map.createLayer"
+      )
+    } else if (!this.aboveLayer) {
+      throw new Error(
+        "belowLayer não retornado por map.createLayer"
+      )
+    }
+
+    this.aboveLayer.setDepth(10);
+    this.worldLayer.setCollisionByProperty({ collides: true });
   }
 
   handleNpcCollision() {
