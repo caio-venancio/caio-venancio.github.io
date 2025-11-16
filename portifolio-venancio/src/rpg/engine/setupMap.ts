@@ -1,5 +1,4 @@
 // engine/setupMap.ts
-import Phaser from 'phaser';
 import { GameScene } from '../scenes/GameScene'; // ajuste o caminho se precisar
 
 // você pode tipar direto com GameScene:

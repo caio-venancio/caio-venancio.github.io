@@ -1,4 +1,4 @@
-import Phaser from "phaser";
+
 import { GameScene } from "../scenes/GameScene";
 
 export function setupCamera(scene: GameScene){
