@@ -1,6 +1,7 @@
 //Cena principal de jogo
 import { unfreezePlayer } from '../engine/unfreezePlayer';
 import { setupMap } from '../engine/setupMap';
+import { setupCamera } from '../engine/setupCamera';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
@@ -38,7 +39,7 @@ export class GameScene extends Scene {
     this.setupPhysicsAndColliders()
     this.setupAnimations();
     this.setupInput();
-    this.setupCamera();
+    setupCamera(this);
     this.setupLife();
   }
   
@@ -100,12 +101,7 @@ export class GameScene extends Scene {
     this.cursors = this.input.keyboard!.createCursorKeys();
   }
 
-  setupCamera(){
-    //não usa gs, vai virar variável local
-    // 4) Câmera segue o sprite (opcional)
-    this.cameras.main.startFollow(this.player);
-    this.cameras.main.setLerp(0.15, 0.15);
-  }
+
 
   setupLife(){
     //usa gs, vai virar model
