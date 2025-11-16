@@ -43,7 +43,6 @@ export class GameScene extends Scene {
   }
   
   setupPhysicsAndColliders(){
-    
     //acho que estas linhas não eram aqui kkkk
     // 1) Estado lógico do jogo
     this.gs = new GameState();
@@ -190,7 +189,10 @@ export class GameScene extends Scene {
       this.player.setVelocity(0, 0);
       return;
     }
+    this.updatePlayer();
+  }
 
+  updatePlayer(){
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
