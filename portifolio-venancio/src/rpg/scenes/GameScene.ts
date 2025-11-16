@@ -1,5 +1,6 @@
 //Cena principal de jogo
 import { unfreezePlayer } from '../engine/functions';
+import { setupMap } from '../engine/setupMap';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
@@ -15,6 +16,7 @@ export class GameScene extends Scene {
   worldLayer!: Phaser.Tilemaps.TilemapLayer;
   belowLayer!: Phaser.Tilemaps.TilemapLayer;
   aboveLayer!: Phaser.Tilemaps.TilemapLayer;
+  map: Phaser.Tilemaps.Tilemap;
   
   private accumulator = 0;
   private readonly fixedDt = 1 / 60; // 60 Hz lógico
@@ -35,7 +37,7 @@ export class GameScene extends Scene {
   }
 
   create() {
-    this.setupMap()
+    setupMap(this)
     // -------- Sempre que quiser ver as colisões atuais, descomente: -------
     // const debugGraphics = this.add.graphics().setAlpha(0.75);
     // worldLayer.renderDebug(debugGraphics, {
@@ -117,48 +119,6 @@ export class GameScene extends Scene {
     this.gs.player.y = this.player.y;
 
 
-  }
-
-  setupMap(){
-    // 1) criar o tilemap a partir do JSON
-    const map = this.make.tilemap({ key: "map" });
-
-    // debug: listar tilesets presentes no JSON
-    console.debug("map.tilesets:", map.tilesets.map(ts => ts.name));
-
-    // tenta usar o nome esperado; se não existir, usa o primeiro tileset do JSON
-    let tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
-    if (!tileset && map.tilesets.length > 0) {
-      const fallbackName = map.tilesets[0].name;
-      console.warn(
-        `Tileset 'tuxmon-sample-32px' não encontrado no map.json — usando '${fallbackName}' como fallback`
-      );
-      tileset = map.addTilesetImage(fallbackName, "tiles");
-    }
-
-    if (!tileset) {
-      throw new Error(
-        "Tileset não encontrado: verifique o nome do tileset no JSON e a chave do asset carregado."
-      );
-    }
-
-    this.belowLayer = map.createLayer("Below Player", tileset, 0, 0)!;
-    this.worldLayer = map.createLayer("World", tileset, 0, 0)!;
-    this.aboveLayer = map.createLayer("Above Player", tileset, 0, 0)!;
-
-    // Conferindo se retornou com sucesso antes de utilizar
-    if (!this.worldLayer) {
-      throw new Error(
-        "WorldLayer não retornado por map.createLayer"
-      )
-    } else if (!this.aboveLayer) {
-      throw new Error(
-        "belowLayer não retornado por map.createLayer"
-      )
-    }
-
-    this.aboveLayer.setDepth(10);
-    this.worldLayer.setCollisionByProperty({ collides: true });
   }
 
   handleNpcCollision() {
