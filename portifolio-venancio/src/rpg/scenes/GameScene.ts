@@ -3,6 +3,7 @@ import { unfreezePlayer } from '../engine/unfreezePlayer';
 import { setupMap } from '../engine/setupMap';
 import { setupCamera } from '../engine/setupCamera';
 import { setupAnimations } from '../engine/setupAnimations'
+import { setupInput } from '../engine/setupInput';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
@@ -39,7 +40,7 @@ export class GameScene extends Scene {
     setupMap(this)
     this.setupPhysicsAndColliders()
     setupAnimations(this);
-    this.setupInput();
+    setupInput(this);
     setupCamera(this);
     this.setupLife();
   }
@@ -71,16 +72,6 @@ export class GameScene extends Scene {
     // this.player.setBodySize(32, 48, true)  
     this.physics.add.collider(this.player, this.worldLayer);
   }
-
-
-
-  setupInput(){
-    //não usa gs, vai virar variável local
-    // 3) Input
-    this.cursors = this.input.keyboard!.createCursorKeys();
-  }
-
-
 
   setupLife(){
     //usa gs, vai virar model
