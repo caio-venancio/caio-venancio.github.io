@@ -1,5 +1,5 @@
 //Cena principal de jogo
-import { unfreezePlayer } from '../engine/functions';
+import { unfreezePlayer } from '../engine/unfreezePlayer';
 import { setupMap } from '../engine/setupMap';
 
 import { GameState } from "../core/gamestate";
@@ -43,6 +43,8 @@ export class GameScene extends Scene {
   }
   
   setupPhysicsAndColliders(){
+    //usa gs, vai virar model
+
     //acho que estas linhas não eram aqui kkkk
     // 1) Estado lógico do jogo
     this.gs = new GameState();
@@ -69,6 +71,8 @@ export class GameScene extends Scene {
   }
 
   setupAnimations(){
+    //não usa gs, vai virar variável local
+
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -91,17 +95,20 @@ export class GameScene extends Scene {
   }
 
   setupInput(){
+    //não usa gs, vai virar variável local
     // 3) Input
     this.cursors = this.input.keyboard!.createCursorKeys();
   }
 
   setupCamera(){
+    //não usa gs, vai virar variável local
     // 4) Câmera segue o sprite (opcional)
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setLerp(0.15, 0.15);
   }
 
   setupLife(){
+    //usa gs, vai virar model
     // ================================ VIDA ================================
     const hp = this.gs.player.hp;
     // avisa o React do valor inicial
@@ -124,7 +131,7 @@ export class GameScene extends Scene {
   }
 
   handleNpcCollision() {
-
+    //usa gs, vai virar model
     if (!this.gs.player.invul) {
       this.gs.player.hp -= 25
       EventBus.emit('hp:update', this.gs.player.hp);
@@ -157,17 +164,20 @@ export class GameScene extends Scene {
   }
 
   applyDamage(amount: number) {
+    //usa gs, vai virar model
     this.gs.player.hp = Math.max(0, this.gs.player.hp - amount);
     EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
   heal(amount: number) {
+    //usa gs, vai virar model
     this.gs.player.hp = Math.min(100, this.gs.player.hp + amount);
     EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
     // === Controle de congelamento ===
   freezePlayer(_reason?: 'dead' | 'menu') {
+    //usa gs, vai virar model
     this.gs.player.isPlayerFrozen = true;
 
     // 1) zera movimento e animações
@@ -193,6 +203,7 @@ export class GameScene extends Scene {
   }
 
   updatePlayer(){
+    //usa gs, vai virar model
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
@@ -238,6 +249,7 @@ export class GameScene extends Scene {
   }
 
   updateAngryNpc(){
+    //não usa gs, vai virar variável local
     if (this.npc && this.player) {
       const speed = 50
       const direction = new Phaser.Math.Vector2(
@@ -250,6 +262,7 @@ export class GameScene extends Scene {
   }
 
   respawnAt(x: number, y: number) {
+    //usa gs, vai virar variável model
     this.gs.player.hp = 100;
     this.player.setPosition(x, y);
     unfreezePlayer(this);
