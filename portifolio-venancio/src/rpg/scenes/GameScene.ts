@@ -18,9 +18,6 @@ export class GameScene extends Scene {
   aboveLayer!: Phaser.Tilemaps.TilemapLayer;
   map: Phaser.Tilemaps.Tilemap;
   
-  private accumulator = 0;
-  private readonly fixedDt = 1 / 60; // 60 Hz lógico
-  
   constructor() {
     super({ key: "rpg" });
   }
@@ -38,13 +35,7 @@ export class GameScene extends Scene {
 
   create() {
     setupMap(this)
-    // -------- Sempre que quiser ver as colisões atuais, descomente: -------
-    // const debugGraphics = this.add.graphics().setAlpha(0.75);
-    // worldLayer.renderDebug(debugGraphics, {
-    //   tileColor: null, // Color of non-colliding tiles
-    //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-    //   faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-    // });
+
 
     // 1) Estado lógico do jogo
     this.gs = new GameState();
