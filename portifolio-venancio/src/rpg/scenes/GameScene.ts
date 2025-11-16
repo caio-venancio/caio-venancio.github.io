@@ -35,47 +35,41 @@ export class GameScene extends Scene {
 
   create() {
     setupMap(this)
-
-
+    this.setupPhysicsAndColliders()
+    this.setupAnimations();
+    this.setupInput();
+    this.setupCamera();
+    this.setupLife();
+  }
+  
+  setupPhysicsAndColliders(){
+    
+    //acho que estas linhas não eram aqui kkkk
     // 1) Estado lógico do jogo
     this.gs = new GameState();
-
     // 2) Sprite visual sincronizado com o estado
     // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
     this.player = this.physics.add
-      .sprite(this.gs.player.x, this.gs.player.y, "dude");
-      //  .setCollideWorldBounds(true);
-
-    // ================================ VIDA ================================
-    const hp = this.gs.player.hp;
-    // avisa o React do valor inicial
-    EventBus.emit('hp:update', hp);
-    this.time.addEvent({
-      delay: 1500,
-      loop: true,
-      callback: () => {
-        // this.applyDamage(7);
-        if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
-          this.freezePlayer('dead');
-          this.player.setTint(0x888888);
-          // EventBus.emit('player:dead');
-          this.scene.launch('SpectatorUI', { main: this });
-          this.scene.bringToTop('SpectatorUI');
-        }
-      }
-    });
-
+    .sprite(this.gs.player.x, this.gs.player.y, "dude");
+    // inicializa estado a partir da posição física
+    this.gs.player.x = this.player.x;
+    this.gs.player.y = this.player.y;    
+    //  .setCollideWorldBounds(true);
     this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
+    
+    //estas são
     this.physics.add.collider(this.npc, this.worldLayer)
     this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
     // this.npc.setImmovable(true)
     // this.player.setImmovable(true)
     // this.player.setCollideWorldBounds(true)
-
+    
     // task: fazer toggle para trocar personagem entre cubo e cara do phaser
     // this.player.setBodySize(32, 48, true)  
     this.physics.add.collider(this.player, this.worldLayer);
+  }
 
+  setupAnimations(){
     this.anims.create({
       key: 'left',
       frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
@@ -95,20 +89,38 @@ export class GameScene extends Scene {
       frameRate: 10,
       repeat: -1
     });
+  }
 
-    // this.background = this.add.image(400, 300, "assets");
-
+  setupInput(){
     // 3) Input
     this.cursors = this.input.keyboard!.createCursorKeys();
+  }
 
+  setupCamera(){
     // 4) Câmera segue o sprite (opcional)
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setLerp(0.15, 0.15);
+  }
 
-    // inicializa estado a partir da posição física
-    this.gs.player.x = this.player.x;
-    this.gs.player.y = this.player.y;
-
+  setupLife(){
+    // ================================ VIDA ================================
+    const hp = this.gs.player.hp;
+    // avisa o React do valor inicial
+    EventBus.emit('hp:update', hp);
+    this.time.addEvent({
+      delay: 1500,
+      loop: true,
+      callback: () => {
+        // this.applyDamage(7);
+        if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
+          this.freezePlayer('dead');
+          this.player.setTint(0x888888);
+          // EventBus.emit('player:dead');
+          this.scene.launch('SpectatorUI', { main: this });
+          this.scene.bringToTop('SpectatorUI');
+        }
+      }
+    });
 
   }
 
