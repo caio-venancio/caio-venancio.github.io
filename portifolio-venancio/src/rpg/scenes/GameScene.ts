@@ -179,36 +179,25 @@ export class GameScene extends Scene {
     console.log("Essa é a velocidade:", speed)
     let vx = 0;
     let vy = 0;
-
-    const input = (this.game as any).externalInput || {
-      up: false,
-      down: false,
-      left: false,
-      right: false,
-    };
-    if (externalInput.left)  vx = -speed;
-    if (externalInput.right) vx =  speed;
-    if (externalInput.up)    vy = -speed;
-    if (externalInput.down)  vy =  speed;
-
-    if (this.cursors.left?.isDown) {
+      
+    if (this.cursors.left?.isDown || externalInput.left) {
       vx = -speed;
       this.player.anims.play('left', true);
     }
-    else if (this.cursors.right?.isDown){
+    else if (this.cursors.right?.isDown || externalInput.right){
       vx = speed;
       this.player.anims.play('right', true); //task: refatorar, tá feio esse tanto de if para fazer animação né
-    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown){
+    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.up)){
       this.player.anims.play('right', true);
-    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown) {
+    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.down)) {
       this.player.anims.play('left', true);
     } else {
       this.player.anims.play('turn');
     }
 
 
-    if (this.cursors.up?.isDown){ vy = -speed;}
-    else if (this.cursors.down?.isDown) vy = speed;
+    if (this.cursors.up?.isDown || externalInput.up){ vy = -speed;}
+    else if (this.cursors.down?.isDown || externalInput.down) vy = speed;
     
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
