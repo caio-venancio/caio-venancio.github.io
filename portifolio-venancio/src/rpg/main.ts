@@ -46,7 +46,7 @@ const config: Phaser.Types.Core.GameConfig = {
             fps: 120,          // mais passos, menos túnel
             tileBias: 32       // ajuda na separação sprite vs tile
         }
-    }
+    },
 };
 
 const StartGame = (parent: string) => {

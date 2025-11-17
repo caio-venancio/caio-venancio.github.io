@@ -67,7 +67,7 @@ export class Breakout extends Phaser.Scene
         this.ball = this.physics.add.image(400, 500, 'assets', 'ball1').setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('onPaddle', true);
 
-        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle1').setImmovable();
+        this.paddle = this.physics.add.image(400, 550, 'assets', 'paddle1').setImmovable().setCollideWorldBounds(true);
 
         //  Our colliders
         this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
@@ -78,7 +78,7 @@ export class Breakout extends Phaser.Scene
         {
 
             //  Keep the paddle within the game
-            this.paddle.x = Phaser.Math.Clamp(pointer.x, 52, 748);
+            this.paddle.x = Phaser.Math.Clamp(pointer.x, 0, 800);
 
             if (this.ball.getData('onPaddle'))
             {

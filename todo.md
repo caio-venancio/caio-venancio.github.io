@@ -14,24 +14,30 @@ Static
         - [X] Colocar elementos coletados no card de forma elegante 
         - [X] Colocar 4 collection 
             - [X] Fazer template vazio 
-            - [X] Fazer Agio <AQUI>
+            - [X] Fazer Agio 
             - [X] Fazer SuaPesquisaDeMatérias
             - [X] Fazer contador
             - [X] Fazer SeuPontoDigital
+    - [] Consertar carrosel (setinhas)
     - [X] Decidir barra lateral
         por hora não vou por.
     - [X] Decidir fundo de section
         degradê azul no cinza ficou bom
     - [X] Colocar frases aleatórias debaixo do meu nome.
     - [] Fazer nova frase aleatória com F5 de algum jeito, agora está por build 
-    - [X] Colocar links para contato 
+    - [X] Colocar links para contato
 - [] Fazer página Sobre
 - [] Fazer página Projetos
     - [] Fazer uma página por projeto
     - [] Colocar um carrosel de páginas de projeto
     - [] Colocar um contador de tecnologias
 - [] Fazer Blog
-    - [] Ver se mini blog faz sentido <AQUI>
+    - [X] Ver se mini blog faz sentido
+    - [X] Colocar parser de blog <AQUI>
+    - [X] Colocar página sobre trace.moe <AQUI>
+    - [X] Fazer aparecer na página principal
+    - [] Colocar segunda página
+    - [] Colocar terceira página
 - [X] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html

@@ -10,7 +10,7 @@
 
 // core/GameState.ts
 // core/GameState.ts
-import { Player } from "./entities/player";
+import { Player } from "./models/player";
 
 export class GameState {
   player = new Player(721, 300, 225); // posição inicial + velocidade

@@ -14,9 +14,23 @@ interface IProps
     onHpChange?: (hp: number) => void
 }
 
+type InputState = {
+  up: boolean;
+  down: boolean;
+  left: boolean;
+  right: boolean;
+};
+
 export const PhaserGame = forwardRef<IRefPhaserGame, IProps>(function PhaserGame({ currentActiveScene, onHpChange }, ref)
 {
     const game = useRef<Phaser.Game | null>(null!);
+    const inputStateRef = useRef<InputState>({
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+    });
+
 
     useLayoutEffect(() =>
     {

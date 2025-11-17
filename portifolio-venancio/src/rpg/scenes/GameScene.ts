@@ -1,8 +1,13 @@
 //Cena principal de jogo
-import { unfreezePlayer } from '../engine/functions';
+import { unfreezePlayer } from '../engine/unfreezePlayer';
+import { setupMap } from '../engine/setupMap';
+import { setupCamera } from '../engine/setupCamera';
+import { setupAnimations } from '../engine/setupAnimations'
+import { setupInput } from '../engine/setupInput';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
+import { externalInput } from "../externalInput";
 
 import { Scene } from 'phaser';
 
@@ -12,9 +17,10 @@ export class GameScene extends Scene {
   npc!: Phaser.Physics.Arcade.Sprite;
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
   background!: Phaser.GameObjects.Image;
-  
-  private accumulator = 0;
-  private readonly fixedDt = 1 / 60; // 60 Hz lógico
+  worldLayer!: Phaser.Tilemaps.TilemapLayer;
+  belowLayer!: Phaser.Tilemaps.TilemapLayer;
+  aboveLayer!: Phaser.Tilemaps.TilemapLayer;
+  map: Phaser.Tilemaps.Tilemap;
   
   constructor() {
     super({ key: "rpg" });
@@ -32,64 +38,44 @@ export class GameScene extends Scene {
   }
 
   create() {
-     // 1) criar o tilemap a partir do JSON
-    const map = this.make.tilemap({ key: "map" });
+    setupMap(this)
+    this.setupPhysicsAndColliders()
+    setupAnimations(this);
+    setupInput(this);
+    setupCamera(this);
+    this.setupLife();
+  }
+  
+  setupPhysicsAndColliders(){
+    //usa gs, vai virar model
 
-    // debug: listar tilesets presentes no JSON
-    console.debug("map.tilesets:", map.tilesets.map(ts => ts.name));
-
-    // tenta usar o nome esperado; se não existir, usa o primeiro tileset do JSON
-    let tileset = map.addTilesetImage("tuxmon-sample-32px-extruded", "tiles");
-    if (!tileset && map.tilesets.length > 0) {
-      const fallbackName = map.tilesets[0].name;
-      console.warn(
-        `Tileset 'tuxmon-sample-32px' não encontrado no map.json — usando '${fallbackName}' como fallback`
-      );
-      tileset = map.addTilesetImage(fallbackName, "tiles");
-    }
-
-    if (!tileset) {
-      throw new Error(
-        "Tileset não encontrado: verifique o nome do tileset no JSON e a chave do asset carregado."
-      );
-    }
-
-    const belowLayer = map.createLayer("Below Player", tileset, 0, 0);
-    const worldLayer = map.createLayer("World", tileset, 0, 0);
-    const aboveLayer = map.createLayer("Above Player", tileset, 0, 0);
-
-    // Conferindo se retornou com sucesso antes de utilizar
-    if (!worldLayer) {
-      throw new Error(
-        "WorldLayer não retornado por map.createLayer"
-      )
-    } else if (!aboveLayer) {
-      throw new Error(
-        "belowLayer não retornado por map.createLayer"
-      )
-    }
-
-    aboveLayer.setDepth(10);
-    worldLayer.setCollisionByProperty({ collides: true });
-
-
-    // -------- Sempre que quiser ver as colisões atuais, descomente: -------
-    // const debugGraphics = this.add.graphics().setAlpha(0.75);
-    // worldLayer.renderDebug(debugGraphics, {
-    //   tileColor: null, // Color of non-colliding tiles
-    //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
-    //   faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
-    // });
-
+    //acho que estas linhas não eram aqui kkkk
     // 1) Estado lógico do jogo
     this.gs = new GameState();
-
     // 2) Sprite visual sincronizado com o estado
     // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
     this.player = this.physics.add
-      .sprite(this.gs.player.x, this.gs.player.y, "dude");
-      //  .setCollideWorldBounds(true);
+    .sprite(this.gs.player.x, this.gs.player.y, "dude");
+    // inicializa estado a partir da posição física
+    this.gs.player.x = this.player.x;
+    this.gs.player.y = this.player.y;    
+    //  .setCollideWorldBounds(true);
+    this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
+    
+    //estas são
+    this.physics.add.collider(this.npc, this.worldLayer)
+    this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
+    // this.npc.setImmovable(true)
+    // this.player.setImmovable(true)
+    // this.player.setCollideWorldBounds(true)
+    
+    // task: fazer toggle para trocar personagem entre cubo e cara do phaser
+    // this.player.setBodySize(32, 48, true)  
+    this.physics.add.collider(this.player, this.worldLayer);
+  }
 
+  setupLife(){
+    //usa gs, vai virar model
     // ================================ VIDA ================================
     const hp = this.gs.player.hp;
     // avisa o React do valor inicial
@@ -109,55 +95,10 @@ export class GameScene extends Scene {
       }
     });
 
-    this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
-    this.physics.add.collider(this.npc, worldLayer)
-    this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
-    // this.npc.setImmovable(true)
-    // this.player.setImmovable(true)
-    // this.player.setCollideWorldBounds(true)
-
-    // task: fazer toggle para trocar personagem entre cubo e cara do phaser
-    // this.player.setBodySize(32, 48, true)  
-    this.physics.add.collider(this.player, worldLayer);
-
-    this.anims.create({
-      key: 'left',
-      frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    this.anims.create({
-      key: 'turn',
-      frames: [ { key: 'dude', frame: 4 } ],
-      frameRate: 20
-    });
-
-    this.anims.create({
-      key: 'right',
-      frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }),
-      frameRate: 10,
-      repeat: -1
-    });
-
-    // this.background = this.add.image(400, 300, "assets");
-
-    // 3) Input
-    this.cursors = this.input.keyboard!.createCursorKeys();
-
-    // 4) Câmera segue o sprite (opcional)
-    this.cameras.main.startFollow(this.player);
-    this.cameras.main.setLerp(0.15, 0.15);
-
-    // inicializa estado a partir da posição física
-    this.gs.player.x = this.player.x;
-    this.gs.player.y = this.player.y;
-
-
   }
 
   handleNpcCollision() {
-
+    //usa gs, vai virar model
     if (!this.gs.player.invul) {
       this.gs.player.hp -= 25
       EventBus.emit('hp:update', this.gs.player.hp);
@@ -190,17 +131,20 @@ export class GameScene extends Scene {
   }
 
   applyDamage(amount: number) {
+    //usa gs, vai virar model
     this.gs.player.hp = Math.max(0, this.gs.player.hp - amount);
     EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
   heal(amount: number) {
+    //usa gs, vai virar model
     this.gs.player.hp = Math.min(100, this.gs.player.hp + amount);
     EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
   }
 
     // === Controle de congelamento ===
   freezePlayer(_reason?: 'dead' | 'menu') {
+    //usa gs, vai virar model
     this.gs.player.isPlayerFrozen = true;
 
     // 1) zera movimento e animações
@@ -222,7 +166,11 @@ export class GameScene extends Scene {
       this.player.setVelocity(0, 0);
       return;
     }
+    this.updatePlayer();
+  }
 
+  updatePlayer(){
+    //usa gs, vai virar model
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
 
@@ -231,24 +179,25 @@ export class GameScene extends Scene {
     console.log("Essa é a velocidade:", speed)
     let vx = 0;
     let vy = 0;
-
-    if (this.cursors.left?.isDown) {
+      
+    if (this.cursors.left?.isDown || externalInput.left) {
       vx = -speed;
       this.player.anims.play('left', true);
     }
-    else if (this.cursors.right?.isDown){
+    else if (this.cursors.right?.isDown || externalInput.right){
       vx = speed;
       this.player.anims.play('right', true); //task: refatorar, tá feio esse tanto de if para fazer animação né
-    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown){
+    } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.up)){
       this.player.anims.play('right', true);
-    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown) {
+    } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.down)) {
       this.player.anims.play('left', true);
     } else {
       this.player.anims.play('turn');
     }
 
-    if (this.cursors.up?.isDown){ vy = -speed;}
-    else if (this.cursors.down?.isDown) vy = speed;
+
+    if (this.cursors.up?.isDown || externalInput.up){ vy = -speed;}
+    else if (this.cursors.down?.isDown || externalInput.down) vy = speed;
     
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
@@ -268,6 +217,7 @@ export class GameScene extends Scene {
   }
 
   updateAngryNpc(){
+    //não usa gs, vai virar variável local
     if (this.npc && this.player) {
       const speed = 50
       const direction = new Phaser.Math.Vector2(
@@ -280,6 +230,7 @@ export class GameScene extends Scene {
   }
 
   respawnAt(x: number, y: number) {
+    //usa gs, vai virar variável model
     this.gs.player.hp = 100;
     this.player.setPosition(x, y);
     unfreezePlayer(this);

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { IRefPhaserGame, PhaserGame } from './PhaserGame';
 import { MainMenu } from './scenes/MainMenu';
+import { VirtualArrows } from './arrows';
 
 function App()
 {
@@ -87,6 +88,9 @@ function App()
             {/* <HUD /> */}
             <div>
                 HP: {hp}
+            </div>
+            <div className='block md:hidden'>
+                <VirtualArrows />
             </div>
         </div>
     )
