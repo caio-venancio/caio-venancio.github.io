@@ -9,7 +9,7 @@ const btnStyle: React.CSSProperties = {
   borderRadius: "50%",
   border: "1px solid #ccc",
   background: "rgba(255,255,255,0.2)",
-  color: "#fff",
+  color: "#000",
   fontSize: "24px",
   fontWeight: "bold",
   backdropFilter: "blur(4px)",
@@ -44,9 +44,9 @@ export function VirtualArrows() {
   return (
     <div
       style={{
-        position: "absolute",
-        bottom: 20,
-        left: 20,
+        position: "relative",
+        // bottom: 20,
+        // left: 20,
         display: "grid",
         gridTemplateColumns: "60px 60px 60px",
         gridTemplateRows: "60px 60px 60px",

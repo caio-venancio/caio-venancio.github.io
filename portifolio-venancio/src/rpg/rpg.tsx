@@ -89,7 +89,9 @@ function App()
             <div>
                 HP: {hp}
             </div>
-            <VirtualArrows />
+            <div className='block md:hidden'>
+                <VirtualArrows />
+            </div>
         </div>
     )
 }
