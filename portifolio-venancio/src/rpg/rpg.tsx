@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { IRefPhaserGame, PhaserGame } from './PhaserGame';
 import { MainMenu } from './scenes/MainMenu';
+import { VirtualArrows } from './arrows';
 
 function App()
 {
@@ -88,6 +89,7 @@ function App()
             <div>
                 HP: {hp}
             </div>
+            <VirtualArrows />
         </div>
     )
 }

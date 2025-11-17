@@ -7,6 +7,7 @@ import { setupInput } from '../engine/setupInput';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
+import { externalInput } from "../externalInput";
 
 import { Scene } from 'phaser';
 
@@ -179,6 +180,17 @@ export class GameScene extends Scene {
     let vx = 0;
     let vy = 0;
 
+    const input = (this.game as any).externalInput || {
+      up: false,
+      down: false,
+      left: false,
+      right: false,
+    };
+    if (externalInput.left)  vx = -speed;
+    if (externalInput.right) vx =  speed;
+    if (externalInput.up)    vy = -speed;
+    if (externalInput.down)  vy =  speed;
+
     if (this.cursors.left?.isDown) {
       vx = -speed;
       this.player.anims.play('left', true);
@@ -193,6 +205,7 @@ export class GameScene extends Scene {
     } else {
       this.player.anims.play('turn');
     }
+
 
     if (this.cursors.up?.isDown){ vy = -speed;}
     else if (this.cursors.down?.isDown) vy = speed;
