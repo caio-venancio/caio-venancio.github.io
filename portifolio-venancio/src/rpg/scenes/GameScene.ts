@@ -35,6 +35,9 @@ export class GameScene extends Scene {
         '/assets/sprites/dude.png',
         { frameWidth: 32, frameHeight: 48 }
     );
+
+    // https://mastorak.itch.io/pixelart-swords-32x32 -> dá créditos algum dia
+    this.load.spritesheet('sword', '/assets/sprites/swords-sheet.png', { frameWidth: 32, frameHeight: 32})
   }
 
   create() {
