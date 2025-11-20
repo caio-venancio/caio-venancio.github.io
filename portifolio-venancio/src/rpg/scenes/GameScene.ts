@@ -21,7 +21,14 @@ export class GameScene extends Scene {
   belowLayer!: Phaser.Tilemaps.TilemapLayer;
   aboveLayer!: Phaser.Tilemaps.TilemapLayer;
   map: Phaser.Tilemaps.Tilemap;
-  
+  attackKey!: Phaser.Input.Keyboard.Key;
+
+  private attacking = false;
+  private lastAttackTime = 0;
+  private attackCooldown = 300; // ms
+
+  private facing: "left" | "right" | "up" | "down" = "down"; // direção atual
+
   constructor() {
     super({ key: "rpg" });
   }
@@ -47,7 +54,120 @@ export class GameScene extends Scene {
     setupInput(this);
     setupCamera(this);
     this.setupLife();
+
+    this.attackKey = this.input.keyboard!.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    );
   }
+
+  private handleAttack(time: number) {
+    if (this.attacking) return;
+    if (!Phaser.Input.Keyboard.JustDown(this.attackKey)) return;
+
+    // verifica cooldown
+    if (time - this.lastAttackTime < this.attackCooldown) return;
+
+    this.lastAttackTime = time;
+    this.attacking = true;
+
+    // animação opcional
+    // this.player.play("attack", true);
+
+    // cria hitbox
+    this.createAttackHitbox();
+
+    // termina o ataque depois de um tempinho (duração do golpe)
+    this.time.delayedCall(150, () => {
+      this.attacking = false;
+    });
+  }
+
+  private createAttackHitbox() {
+  //   const range = 32;
+
+    let offsetX = 0;
+    let offsetY = 0;
+
+  //   switch (this.facing) {
+  //     case "up":    offsetY = -range; break;
+  //     case "down":  offsetY =  range; break;
+  //     case "left":  offsetX = -range; break;
+  //     case "right": offsetX =  range; break;
+  //   }
+
+    const sword = this.add.sprite(this.player.x + offsetX, this.player.y + offsetY, "sword");
+    sword.setOrigin(0.5, 0.5);
+
+  //   // se quiser rotacionar dependendo da direção
+  //   if (this.facing === "left")  sword.setAngle(-90);
+  //   if (this.facing === "right") sword.setAngle(90);
+  //   if (this.facing === "up")    sword.setAngle(0);
+  //   if (this.facing === "down")  sword.setAngle(180);
+
+    // const hitbox = this.physics.add.existing(sword, false) as Phaser.Physics.Arcade.Body;
+    // hitbox.setSize(32, 32);
+
+  //   this.physics.add.overlap(
+  //     sword,
+  //     this.enemies,
+  //     (_s, enemyObj) => {
+  //       const enemy = enemyObj as Phaser.Physics.Arcade.Sprite;
+  //       this.handleEnemyHit(enemy);
+  //     },
+  //     undefined,
+  //     this
+  //   );
+
+    this.time.delayedCall(120, () => {
+      sword.destroy();
+    });
+  }
+
+  // private createAttackHitbox() {
+    // const range = 32;    // distância à frente do player
+    // const width = 32;    // largura do hitbox
+    // const height = 32;   // altura do hitbox
+
+    // let x = this.player.x;
+    // let y = this.player.y;
+
+    // switch (this.facing) {
+    //   case "up":
+    //     y -= range;
+    //     break;
+    //   case "down":
+    //     y += range;
+    //     break;
+    //   case "left":
+    //     x -= range;
+    //     break;
+    //   case "right":
+    //     x += range;
+    //     break;
+    // }
+
+    // const hitbox = this.physics.add
+    //   .sprite(x, y, undefined as any) // sem textura, só hitbox
+    //   .setSize(width, height)
+    //   .setVisible(false); // invisível
+
+    // // checa colisão com inimigos
+    // this.physics.add.overlap(
+    //   hitbox,
+    //   this.enemies,
+    //   (hitboxObj, enemyObj) => {
+    //     const enemy = enemyObj as Phaser.Physics.Arcade.Sprite;
+    //     this.handleEnemyHit(enemy);
+    //   },
+    //   undefined,
+    //   this
+    // );
+
+    // // remove hitbox rapidinho
+    // this.time.delayedCall(80, () => {
+    //   hitbox.destroy();
+    // });
+  // }
   
   setupPhysicsAndColliders(){
     //usa gs, vai virar model
@@ -169,10 +289,10 @@ export class GameScene extends Scene {
       this.player.setVelocity(0, 0);
       return;
     }
-    this.updatePlayer();
+    this.updatePlayer(_time);
   }
 
-  updatePlayer(){
+  updatePlayer(time: number){
     //usa gs, vai virar model
     // Move o jogador usando o corpo físico para que colisões funcionem
     if (!this.player || !this.player.body) return;
@@ -186,21 +306,25 @@ export class GameScene extends Scene {
     if (this.cursors.left?.isDown || externalInput.left) {
       vx = -speed;
       this.player.anims.play('left', true);
+      this.facing = "left";
     }
     else if (this.cursors.right?.isDown || externalInput.right){
       vx = speed;
       this.player.anims.play('right', true); //task: refatorar, tá feio esse tanto de if para fazer animação né
+      this.facing = "right";
     } else if (this.cursors.up?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.up)){
       this.player.anims.play('right', true);
+      this.facing = "right";
     } else if(this.cursors.down?.isDown && !this.cursors.left?.isDown && !this.cursors.right?.isDown || (externalInput.down)) {
       this.player.anims.play('left', true);
+      this.facing = "left";
     } else {
       this.player.anims.play('turn');
     }
 
 
-    if (this.cursors.up?.isDown || externalInput.up){ vy = -speed;}
-    else if (this.cursors.down?.isDown || externalInput.down) vy = speed;
+    if (this.cursors.up?.isDown || externalInput.up){ vy = -speed; this.facing = "up";}
+    else if (this.cursors.down?.isDown || externalInput.down) {vy = speed; this.facing = "down";}
     
     // usar o helper do Arcade Sprite
     this.player.setVelocity(vx, vy);
@@ -217,6 +341,8 @@ export class GameScene extends Scene {
 
     // debug rápido sobre colisões
     // console.debug('player.body.blocked:', body.blocked, 'touching:', body.touching);
+      // aqui chamamos o ataque
+    this.handleAttack(time);
   }
 
   updateAngryNpc(){
