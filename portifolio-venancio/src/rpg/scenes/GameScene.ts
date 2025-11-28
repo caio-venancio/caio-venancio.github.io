@@ -5,6 +5,9 @@ import { setupCamera } from '../engine/setupCamera';
 import { setupAnimations } from '../engine/setupAnimations'
 import { setupInput } from '../engine/setupInput';
 
+//Tem que retirar depois por que é lógica
+import { setupLife } from '../nonengine/setupLife';
+
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
 import { externalInput } from "../externalInput";
@@ -53,7 +56,9 @@ export class GameScene extends Scene {
     setupAnimations(this);
     setupInput(this);
     setupCamera(this);
-    this.setupLife();
+
+    // isto tem que vir da lógica, do servidor
+    setupLife(this);
 
     this.attackKey = this.input.keyboard!.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
@@ -197,28 +202,7 @@ export class GameScene extends Scene {
     this.physics.add.collider(this.player, this.worldLayer);
   }
 
-  setupLife(){
-    //usa gs, vai virar model
-    // ================================ VIDA ================================
-    const hp = this.gs.player.hp;
-    // avisa o React do valor inicial
-    EventBus.emit('hp:update', hp);
-    this.time.addEvent({
-      delay: 1500,
-      loop: true,
-      callback: () => {
-        // this.applyDamage(7);
-        if (this.gs.player.hp <= 0 && !this.gs.player.isPlayerFrozen) {
-          this.freezePlayer('dead');
-          this.player.setTint(0x888888);
-          // EventBus.emit('player:dead');
-          this.scene.launch('SpectatorUI', { main: this });
-          this.scene.bringToTop('SpectatorUI');
-        }
-      }
-    });
-
-  }
+  
 
   handleNpcCollision() {
     //usa gs, vai virar model
@@ -349,7 +333,7 @@ export class GameScene extends Scene {
     //não usa gs, vai virar variável local
     if (this.npc && this.player) {
       const speed = 50
-      const direction = new Phaser.Math.Vector2(
+      const direction = new Phaser.Math.Vector2( 
         this.player.x - this.npc.x,
         this.player.y - this.npc.y
       ).normalize()
