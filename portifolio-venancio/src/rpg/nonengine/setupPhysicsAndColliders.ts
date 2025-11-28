@@ -29,3 +29,4 @@ export function setupPhysicsAndColliders(scene: GameScene){
     // this.player.setBodySize(32, 48, true)  
     scene.physics.add.collider(scene.player, scene.worldLayer);
   }
+

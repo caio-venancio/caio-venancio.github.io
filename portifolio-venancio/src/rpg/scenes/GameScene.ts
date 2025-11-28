@@ -212,18 +212,6 @@ export class GameScene extends Scene {
     }
   }
 
-  applyDamage(amount: number) {
-    //usa gs, vai virar model
-    this.gs.player.hp = Math.max(0, this.gs.player.hp - amount);
-    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
-  }
-
-  heal(amount: number) {
-    //usa gs, vai virar model
-    this.gs.player.hp = Math.min(100, this.gs.player.hp + amount);
-    EventBus.emit('hp:update', this.gs.player.hp); // 👈 avisa o React a cada mudança
-  }
-
     // === Controle de congelamento ===
   freezePlayer(_reason?: 'dead' | 'menu') {
     //usa gs, vai virar model
