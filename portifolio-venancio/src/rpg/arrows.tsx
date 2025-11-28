@@ -52,6 +52,7 @@ export function VirtualArrows() {
         gridTemplateRows: "60px 60px 60px",
         gap: "4px",
         pointerEvents: "none",
+        userSelect: "none"
       }}
     >
       <div />

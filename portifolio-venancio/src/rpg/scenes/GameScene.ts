@@ -90,8 +90,8 @@ export class GameScene extends Scene {
   private createAttackHitbox() {
   //   const range = 32;
 
-    let offsetX = 0;
-    let offsetY = 0;
+    const offsetX = 0;
+    const offsetY = 0;
 
   //   switch (this.facing) {
   //     case "up":    offsetY = -range; break;
