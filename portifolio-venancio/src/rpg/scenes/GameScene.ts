@@ -7,6 +7,7 @@ import { setupInput } from '../engine/setupInput';
 
 //Tem que retirar depois por que é lógica
 import { setupLife } from '../nonengine/setupLife';
+import { setupPhysicsAndColliders } from '../nonengine/setupPhysicsAndColliders';
 
 import { GameState } from "../core/gamestate";
 import { EventBus } from '../EventBus'
@@ -51,8 +52,8 @@ export class GameScene extends Scene {
   }
 
   create() {
-    setupMap(this)
-    this.setupPhysicsAndColliders()
+    setupMap(this);
+    setupPhysicsAndColliders(this);
     setupAnimations(this);
     setupInput(this);
     setupCamera(this);
@@ -174,33 +175,7 @@ export class GameScene extends Scene {
     // });
   // }
   
-  setupPhysicsAndColliders(){
-    //usa gs, vai virar model
 
-    //acho que estas linhas não eram aqui kkkk
-    // 1) Estado lógico do jogo
-    this.gs = new GameState();
-    // 2) Sprite visual sincronizado com o estado
-    // this.player = this.physics.add.sprite(this.gs.player.x, this.gs.player.y, "assets", "weirdsquare");
-    this.player = this.physics.add
-    .sprite(this.gs.player.x, this.gs.player.y, "dude");
-    // inicializa estado a partir da posição física
-    this.gs.player.x = this.player.x;
-    this.gs.player.y = this.player.y;    
-    //  .setCollideWorldBounds(true);
-    this.npc = this.physics.add.sprite(410, 310, 'assets', 'weirdsquare')
-    
-    //estas são
-    this.physics.add.collider(this.npc, this.worldLayer)
-    this.physics.add.collider(this.player, this.npc, this.handleNpcCollision, undefined, this)
-    // this.npc.setImmovable(true)
-    // this.player.setImmovable(true)
-    // this.player.setCollideWorldBounds(true)
-    
-    // task: fazer toggle para trocar personagem entre cubo e cara do phaser
-    // this.player.setBodySize(32, 48, true)  
-    this.physics.add.collider(this.player, this.worldLayer);
-  }
 
   
 
