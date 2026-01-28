@@ -8,10 +8,10 @@ Static
             - [X] Encontrar algum exemplo de carrosel com cards
                 // https://www.justinmind.com/ui-design/carousel
             - [X] Aplicar background de grama
-                impressionante
+                //impressionante
             - [X] Aplica vidro fosco
-                ficou bom não
-        - [X] Colocar elementos coletados no card de forma elegante 
+                //ficou bom não
+        - [X] Colocar elementos coletado s no card de forma elegante 
         - [X] Colocar 4 collection 
             - [X] Fazer template vazio 
             - [X] Fazer Agio 
@@ -41,6 +41,8 @@ Static
 - [X] Fazer layout que se repete em todas as páginas (header, por exemplo)
 - [X] Retirar barras laterais
 - [X] Extrair o conteúdo .md para html
+- [] Colocar contato para redirecionar para Footer
+- [] Colocar Footer no layout
 
 // https://www.justinmind.com/ui-design/carousel
 // https://www.brunoribas.com.br/#toc1
@@ -85,13 +87,16 @@ Game
             - [X] Ver como printar na tela o hp com react
         - [X] para de se mexer quando hp chegar a 0
         - [X] colocar overlay quando hp chegar a 0
+        - [] Fazer monstro só perseguir quando player chegar perto
     - [] Colocar barra de vida no player
     - [X] Fazer entidade dar dano na collision 
     - [X] Fazer entidade perseguir 
     - [] Colocar knockback 
     - [] Fazer player atacar 
-        - [] Pegar sprite da espada <AQUI>
-        - [] fazer função de ataque com ângulo
+        - [X] Pegar sprite da espada 
+        - [] fazer função de ataque com ângulo 
+            - [X] Adicionar espada na tela
+            - [] fazer espada aprecer na frente do player <AQUI>
         - [] fazer checagem de colisão
     - [] Fazer monstro morrer 
 - [] Colocar ataque
@@ -100,7 +105,11 @@ Game
 
 Mobile
 - [] Fazer layout do jogo
-- [] Fazer gamepad
+- [X] Fazer gamepad primitivo
+- [] Fazer gamepad avançado
+    - [] Colocar todas setas do mesmo tamanho
+    - [] Deixar inclicável
+    - [] Deixar que arrastar para baixo não recarregue a página
 - [] Descobrir soluções de zoom para pixel
     - [] Assistir o problema de pixel
 - [] Ver como fazer responsividade com react e com tailwind
