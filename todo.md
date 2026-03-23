@@ -29,7 +29,8 @@ Static
 - [] Fazer página Sobre
 - [] Fazer página Projetos
     - [] Fazer uma página por projeto
-    - [] Colocar um carrosel de páginas de projeto
+        - [] colocar template de página de projeto
+    - [X] Colocar um carrosel de páginas de projeto
     - [] Colocar um contador de tecnologias
 - [] Fazer Blog
     - [X] Ver se mini blog faz sentido

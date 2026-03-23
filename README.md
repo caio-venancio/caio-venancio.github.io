@@ -45,6 +45,7 @@ isso serve a pasta out.
 **Extras**:
 - [layout.tsx](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages)
 - [layout component](https://nextjs.org/learn/pages-router/assets-metadata-css-layout-component)
+- [Dynamic Segmentation](https://nextjs.org/docs/pages/building-your-application/routing/dynamic-routes)
 
 <!-- https://nextjs.org/learn/pages-router/data-fetching-implement-getstaticprops -->
 <!-- - [Pre-rendering and Data Fetching](https://nextjs.org/learn/pages-router/data-fetching) -->
